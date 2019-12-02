@@ -58,7 +58,7 @@ group :test do
   gem 'webdrivers'
   gem 'rspec-rails', '~> 3.5'
   # replaces Rails fixtures for generating data to use in the tests.
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   # for resetting the db between tests (i think)
   gem 'database_cleaner'
 
