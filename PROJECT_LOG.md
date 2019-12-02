@@ -66,5 +66,15 @@ eger invoice_id:integer --no-fixture`
 
 ## Add faker gem and create seed file
  - Use faker gem to generate fake data for the db in our seed file
+ - run `rails c` to check and verify all relationships work properly
 
- 
+## Create tests
+ - Validate data and relationships with rspec test files
+ - We should have specified rspec in the beggining to save some work
+ - Delete all the entire `test` dir in root directory
+ - Add these gems to Gemfile
+  - `gem 'rspec-rails', '~> 3.5'`
+  - `gem 'factory_girl_rails'`
+  - `gem 'capybara'`
+  - `gem 'database_cleaner'`
+ - run `bundle`
