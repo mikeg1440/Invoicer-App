@@ -59,4 +59,12 @@
 tetime --no-fixture`
  - `rails g model product name description:text quantity:integer price:int
 eger invoice_id:integer --no-fixture`
- - 
+ - run migrations
+
+## Add rake task to rebuild db
+ - generate task using `rails g task db dcms` to drop,create, migrate, seed our db
+
+## Add faker gem and create seed file
+ - Use faker gem to generate fake data for the db in our seed file
+
+ 
