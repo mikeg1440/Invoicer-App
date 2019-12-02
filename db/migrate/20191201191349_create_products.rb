@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.integer :quantity
       t.integer :price
       t.integer :invoice_id
-
+        
       t.timestamps
     end
   end
