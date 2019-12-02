@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_124637) do
   create_table "clients", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
+    t.string "business_name"
     t.string "phone_number"
     t.string "address"
     t.datetime "created_at", precision: 6, null: false

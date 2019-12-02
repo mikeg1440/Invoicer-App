@@ -10,7 +10,7 @@
 Faker::Config.locale = 'en-US'
 
 # create default admin user
-admin = User.create(username: 'admin', email: 'admin@mail.com', password: 'admin123', admin: true)
+User.create(username: 'admin', email: 'admin@mail.com', password: 'admin123', admin: true)
 
 # create 5 random users with default password 'password'
 5.times do
@@ -21,12 +21,13 @@ end
 # create client and accounts for each user
 User.all.each do |user|
   # generate a fake company name
-  client_name = Faker::Company.name
+  client_name = Faker::Name.name
+  business_name = Faker::Company.name
   # generate a fake due time (random time between today and 14 days in the future)
   due_time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 14)
 
   # create our new client
-  client = Client.create(name: client_name, email: "#{client_name}@mail.com", phone_number: Faker::PhoneNumber.cell_phone, address: Faker::Address.full_address)
+  client = Client.create(name: client_name, business_name: business_name,email: "#{client_name}@mail.com", phone_number: Faker::PhoneNumber.cell_phone, address: Faker::Address.full_address)
 
   # create account and invoice for account
   account = Account.create(user: user, client: client)
