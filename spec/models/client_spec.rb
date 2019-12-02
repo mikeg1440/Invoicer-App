@@ -45,7 +45,7 @@ RSpec.describe Client, type: :model do
   end
 
   it 'belongs to a account' do
-    expect(client_1.account).to eq(account_1)
+    expect(client_1.accounts).to include(account_1)
   end
 
   # pending "add some examples to (or delete) #{__FILE__}"
