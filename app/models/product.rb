@@ -1,4 +1,4 @@
 class Product < ApplicationRecord
 
-  belongs_to :invoice 
+  belongs_to :invoice
 end

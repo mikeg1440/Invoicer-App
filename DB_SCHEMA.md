@@ -1,18 +1,18 @@
 
-# User
+// # User
 // User has many invoices
 // User has many products through invoices
 // User has many clients, through invoices
 
-# Client
+// # Client
 // Client has many invoices
 
-# Invoice
+// # Invoice
 // Invoice belongs to user
 // Invoice belongs to client
 // Invoice has many products
 
-# Product
+// # Product
 // belongs to invoice
 
 
@@ -35,11 +35,11 @@ table client{
 
 table invoice{
   id integer [pk]
-  client_id integer [not null]
   created_on datetime
   due_on datetime
   amount_due integer
   creation_date integger
+  account_id integer
 }
 
 table product{
@@ -51,16 +51,44 @@ table product{
   invoice_id integer
 }
 
-table user_clients {
+table account {
   id integer
   user_id integer
   client_id integer
 }
 
-Ref: client.user_id < user.id
-Ref: invoice.client_id < client.id
+
 Ref: product.invoice_id < invoice.id
-Ref: user_clients.user_id < user.id
+Ref: account.user_id > user.id
+Ref: account.client_id > client.id
+Ref: account.id < invoice.account_id
+
+
+// Relationships
+
+// user has many accounts
+// user has many invoices through accounts
+// user has many products, through invoices
+
+// client has many accounts
+// client has many invoices, through accounts
+
+// account belongs to user
+// account belongs to client
+// account has many invoices
+// account has many products through invoices
+
+// invoice belongs to account
+// invoice has many products
+
+// product belongs to invoice
+
+// OR MAYBE
+
+// invoice has many invoice_products
+// invoice has many products, through invoice_products
+
+// product belongs to invoice_products  
 
 // table site{
 //   id integer

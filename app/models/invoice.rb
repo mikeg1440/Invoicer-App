@@ -1,6 +1,4 @@
 class Invoice < ApplicationRecord
-  belongs_to :client
-  belongs_to :user
-
-  has_many :products 
+  belongs_to :account
+  has_many :products
 end

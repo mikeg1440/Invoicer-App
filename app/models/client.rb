@@ -1,5 +1,4 @@
 class Client < ApplicationRecord
-  has_many :invoices
-  belongs_to :user, through: :invoices  
-
+  has_many :accounts
+  has_many :invoices, through: :accounts 
 end

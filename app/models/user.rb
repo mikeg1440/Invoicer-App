@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # need to add has_secure_password i think
-  has_many :invoices
-  has_many :clients, through: :invoices
-  has_many :products, through: :invoices
+  has_many :accounts
+  has_many :invoices, through: :accounts
+  has_many :clients, through: :accounts
+  has_many :products, through: :invoices 
 end
