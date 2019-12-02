@@ -36,6 +36,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Faker gem generates fake data to seed our test/dev db
   gem 'faker'
+  # pry-moves gem for debugging
+  gem 'pry-moves'
 end
 
 group :development do
