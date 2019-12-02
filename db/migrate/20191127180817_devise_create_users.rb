@@ -4,8 +4,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
   def change
     create_table :users do |t|
       ## Database authenticatable
+      t.string :username,           null: false, default: ""
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+
+      ## For setting a admin till we get a time to implement roles
+      t.boolean :admin,             null: false, default: false
 
       ## Recoverable
       t.string   :reset_password_token
@@ -15,10 +19,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.datetime :remember_created_at
 
       ## Trackable
-      # t.integer  :sign_in_count, default: 0, null: false
+      t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at
-      # t.datetime :last_sign_in_at
-      # t.inet     :current_sign_in_ip
+      t.datetime :last_sign_in_at
+      t.inet     :current_sign_in_ip
       # t.inet     :last_sign_in_ip
 
       ## Confirmable
