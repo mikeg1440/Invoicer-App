@@ -38,6 +38,14 @@ group :development, :test do
   gem 'faker'
   # pry-moves gem for debugging
   gem 'pry-moves'
+  # for rails rspec testing
+  gem 'rspec-rails', '~> 3.5'
+  # not sure about this one, see if we can go without it when done
+  gem 'factory_girl_rails'
+  # allows us to test webpages of rails app
+  gem 'capybara'
+  # for resetting the db between tests (i think)
+  gem 'database_cleaner'
 end
 
 group :development do
