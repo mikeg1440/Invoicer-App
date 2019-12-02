@@ -40,7 +40,7 @@ group :development, :test do
   gem 'pry-moves'
   # for rails rspec testing
   gem 'rspec-rails', '~> 3.5'
-  # not sure about this one, see if we can go without it when done
+  # replaces Rails fixtures for generating data to use in the tests.
   gem 'factory_girl_rails'
   # allows us to test webpages of rails app
   gem 'capybara'
