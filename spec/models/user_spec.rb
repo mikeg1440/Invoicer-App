@@ -35,18 +35,39 @@ RSpec.describe User, type: :model do
       address: '1600 Amphitheatre Parkway Mountain View, California 94043'
     )
   }
+  let(:invoice_1){
+    Invoice.create(
+      account: account_1,
+      status: 'draft',
+      due_time: (DateTime.now + 7)
+    )
+  }
+  let(:invoice_2){
+    Invoice.create(
+      account: account_2,
+      status: 'draft',
+      due_time: (DateTime.now + 7)
+    )
+  }
 
 
   it 'is valid with a username, email and password' do
     expect(user).to be_valid
   end
 
-  # it 'is not valid without a username' do
-  #   expect(User.new(email: 'email@mail.com', password: 'password')).not_to be_valid
-  # end
+  it 'is not valid without a username' do
+    new_user = User.create(email: 'email@mail.com', password: 'password')
+    expect(new_user.errors.full_messages).to eq(["Username can't be blank"])
+  end
+
+  it 'is not valid without a email' do
+    new_user = User.create(username: 'Pablo Escobar', password: 'password')
+    expect(new_user.errors.full_messages).to eq(["Email can't be blank"])
+  end
 
   it 'is not valid without a password' do
-    expect(User.new(username: 'Name', email: 'email@mail.com')).not_to be_valid
+    new_user = User.create(username: 'Pablo Escobar', email: 'email@mail.com')
+    expect(new_user.errors.full_messages).to eq(["Password can't be blank"])
   end
 
   it "is valid with an admin boolean" do
@@ -62,6 +83,41 @@ RSpec.describe User, type: :model do
     account_2 = user.accounts.build(client: client_2)
     expect(user.accounts.first).to eq(account_1)
     expect(user.accounts.last).to eq(account_2)
+  end
+
+  it 'has many invoices through accounts' do
+    account_1 = user.accounts.build(client: client_1)
+    account_2 = user.accounts.build(client: client_2)
+
+    invoice_1 = account_1.invoices.build(account: account_1, status: 'draft', due_time: (DateTime.now + 7))
+    invoice_2 = account_2.invoices.build(account: account_2, status: 'draft', due_time: (DateTime.now + 7))
+
+    user.save
+    expect(user.invoices.first).to eq(invoice_1)
+    expect(user.invoices.last).to eq(invoice_2)
+  end
+
+  it 'has many products through invoices' do
+    products = []
+    account_1 = user.accounts.build(client: client_1)
+    account_2 = user.accounts.build(client: client_2)
+
+    invoice_1 = account_1.invoices.build(account: account_1, status: 'draft', due_time: (DateTime.now + 7))
+    invoice_2 = account_2.invoices.build(account: account_2, status: 'draft', due_time: (DateTime.now + 7))
+
+    # generate 5 products for each invoice
+    5.times do
+      product_1 = invoice_1.products.build(name: Faker::Commerce.product_name, quantity: rand(10), price: Faker::Commerce.price)
+      product_2 = invoice_2.products.build(name: Faker::Commerce.product_name, quantity: rand(10), price: Faker::Commerce.price)
+
+      products << product_1
+      products << product_2
+
+      invoice_1.save
+      invoice_2.save
+    end
+
+    expect(user.products).to eq(products)
   end
 
 end
