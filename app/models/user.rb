@@ -4,9 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # need to add has_secure_password i think
   has_many :accounts
   has_many :invoices, through: :accounts
   has_many :clients, through: :accounts
-  has_many :products, through: :invoices 
+  has_many :products, through: :invoices
+
+  devise :database_authenticatable, :timeoutable
+
+  validates :username, presence: true
+  validates :email, presence: true
 end
