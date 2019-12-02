@@ -77,3 +77,12 @@ eger invoice_id:integer --no-fixture`
   - `gem 'factory_girl_rails'`
   - `gem 'database_cleaner'`
  - run `bundle`
+ - run `rails g rspec:install` to install rspec framework
+ - add `require 'database_cleaner'` and `require 'capybara/rspec'` below `require rspec/rails` in `spec/rails_helper.rb` file
+ - change `config.use_transactional_fixtures` to false
+ - Add code from [this site](https://medium.com/@amliving/my-rails-rspec-set-up-6451269847f9) to `rails_helper.rb`
+ - Remove `config.fixture_path = "#{::Rails.root}/spec/fixtures"` cause we're not using it
+ - Add `config.include FactoryGirl::Syntax::Methods` to the `Rspec.configure` block
+ - Add `config.include Devise::Test::ControllerHelpers, type: :controller` in same block for devise testing
+ - Add `-f documentation` and `--f-f` to `.rspec` file for better test displays
+ - create some tests
