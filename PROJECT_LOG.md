@@ -50,6 +50,7 @@
  - `rails g devise:install`
  - `rails g devise user`
  - `rails db:migrate`
+ - `rails g devise:views`
 
 ## Edit create & edit migrations
  - Uncomment anything that you want to include from devise generated migration
