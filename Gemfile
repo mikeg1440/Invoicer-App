@@ -39,13 +39,6 @@ group :development, :test do
   # pry-moves gem for debugging
   gem 'pry-moves'
   # for rails rspec testing
-  gem 'rspec-rails', '~> 3.5'
-  # replaces Rails fixtures for generating data to use in the tests.
-  gem 'factory_girl_rails'
-  # allows us to test webpages of rails app
-  gem 'capybara'
-  # for resetting the db between tests (i think)
-  gem 'database_cleaner'
 end
 
 group :development do
@@ -63,6 +56,12 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rspec-rails', '~> 3.5'
+  # replaces Rails fixtures for generating data to use in the tests.
+  gem 'factory_girl_rails'
+  # for resetting the db between tests (i think)
+  gem 'database_cleaner'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

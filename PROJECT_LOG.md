@@ -72,9 +72,8 @@ eger invoice_id:integer --no-fixture`
  - Validate data and relationships with rspec test files
  - We should have specified rspec in the beggining to save some work
  - Delete all the entire `test` dir in root directory
- - Add these gems to Gemfile
+ - Add these gems to Gemfile in `:test` namespace group
   - `gem 'rspec-rails', '~> 3.5'`
   - `gem 'factory_girl_rails'`
-  - `gem 'capybara'`
   - `gem 'database_cleaner'`
  - run `bundle`
