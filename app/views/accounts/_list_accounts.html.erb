@@ -1,0 +1,11 @@
+
+<% if accounts %>
+  <% accounts.each do |account| %>
+
+    <%= render account %>
+
+  <% end %>
+
+<% else %>
+  <h2>No Accounts to Display!</h2>
+<% end %>
