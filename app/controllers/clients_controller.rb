@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   def index
-    @clients = Client.all
+    @clients = current_users_clients
+    binding.pry
   end
 
   def show
@@ -12,9 +13,9 @@ class ClientsController < ApplicationController
   end
 
   def create
-    binding.pry
-    client = Client.create(client_params)
+    client = current_user.clients.build(client_params)
     if client.valid?
+      client.save
       flash[:notice] = "Client successfully created!"
       redirect_to client_path(client)
     else
