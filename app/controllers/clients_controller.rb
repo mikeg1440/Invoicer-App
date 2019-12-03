@@ -1,7 +1,6 @@
 class ClientsController < ApplicationController
   def index
     @clients = current_users_clients
-    binding.pry
   end
 
   def show
@@ -34,7 +33,14 @@ class ClientsController < ApplicationController
   end
 
   def destroy
-    binding.pry
+    @client = Client.find_by(id: params[:id])
+    if @client.destroy
+      flash[:notice] = "Client deleted successfully!"
+      redirect_to clients_path
+    else
+      flash[:alert] = "Client could not be deleted!"
+      render :show
+    end
   end
 
   private
