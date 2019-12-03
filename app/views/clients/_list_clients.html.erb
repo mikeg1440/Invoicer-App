@@ -1,0 +1,12 @@
+<%  binding.pry %>
+
+<% if clients %>
+  <% clients.each do |client| %>
+
+    <%= render partial: 'show_client', locals: {client: client} %>
+
+  <% end %>
+
+<% else %>
+  <h2>No Clients to Display!</h2>
+<% end %>
