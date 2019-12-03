@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   def welcome
   end
 
+  private
+
+  def current_users_clients
+    current_user.clients
+  end
+
   protected
 
   def configure_permitted_parameters
