@@ -1,0 +1,23 @@
+<h1>Client List</h1>
+
+<div class="card">
+  <div class="card-header d-flex flex-row bd-highlight p-4">
+
+    <div class="pr-2">
+      <%= button_to "Create Client",new_client_path, method: 'get', class: 'btn btn-primary' %>
+    </div>
+
+    <div class="pr-2">
+      <%= button_to "Create Invoice",new_client_path, method: 'get',class: 'btn btn-primary' %>
+    </div>
+
+    <div class="container-fluid mr-0">
+      <%= button_to "Archieve Accepted Invoices", clients_path, method: 'get', class: 'mr-auto btn btn-warning float-right' %>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <%= render partial: 'show_clients', locals: {clients: @clients} %>
+  </div>
+
+</div>
