@@ -87,3 +87,8 @@ eger invoice_id:integer --no-fixture`
  - Add `config.include Devise::Test::ControllerHelpers, type: :controller` in same block for devise testing
  - Add `-f documentation` and `--f-f` to `.rspec` file for better test displays
  - create some tests
+
+
+## Notes 12/3
+
+  Started off the day getting devise to work properly and using only what I needed but this ended up being too time consuming so I abandoned that branch, created a new and started fresh with a full devise install only modifying enough to get things working properly.  Next I set up incorporated bootstrap 4 the proper way using ruby instead of the cdn this time.  From there I went on to create the client controller and views which took up most of the afternoon.
