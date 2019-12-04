@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :accounts
   has_many :invoices, through: :accounts
   has_many :clients, through: :accounts
-  has_many :products, through: :invoices
+  has_many :invoice_products, through: :invoices
+  has_many :products, through: :invoice_products
 
   devise :database_authenticatable, :timeoutable
 

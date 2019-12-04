@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
 
-  belongs_to :invoice
+  has_many :invoice_products
+  
 end
