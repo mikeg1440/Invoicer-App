@@ -11,6 +11,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       ## For setting a admin till we get a time to implement roles
       t.boolean :admin,             null: false, default: false
 
+      ## For designating a user account as a client
+      t.boolean :is_client,          null: false, default: false
+      
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -41,7 +44,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     end
 
     add_index :users, :email,                unique: true
-    add_index :users, :username,              unique: true 
+    add_index :users, :username,              unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
