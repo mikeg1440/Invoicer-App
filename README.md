@@ -38,9 +38,17 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+  Need to set up postgresql db first
+   - `sudo su postgres`
+   - `psql`
+   - `\password` then enter password twice
+   - add a `.env` file to root directory and set the db password like this `DATABASE_PASSWORD=<DB_PASSWORD_HERE>`
 
-Say what the step will be
+  Now we need to create the db before we can run migrations
+   - `rails db:create`
+   - `rails db:migrate`
+   -  if you want to test then seed the db `rails db:seed`
+   - then to run tests do `rspec`
 
 ```
 Give the example

@@ -53,7 +53,7 @@
  - `rails g devise:views`
 
 ## Edit create & edit migrations
- - Uncomment anything that you want to include from devise generated migration
+ - Uncomment anything that you want to include from devise generated migration (add email, make unique, uncomment others)
  -  `rails g model client name email phone_numer address user_id:integer  -
 -no-fixture`
  - `rails g model invoice amount_due:integer client_id:integer due_time:da
@@ -92,3 +92,7 @@ eger invoice_id:integer --no-fixture`
 ## Notes 12/3
 
   Started off the day getting devise to work properly and using only what I needed but this ended up being too time consuming so I abandoned that branch, created a new and started fresh with a full devise install only modifying enough to get things working properly.  Next I set up incorporated bootstrap 4 the proper way using ruby instead of the cdn this time.  From there I went on to create the client controller and views which took up most of the afternoon.
+
+## Notes 12/4
+
+  
