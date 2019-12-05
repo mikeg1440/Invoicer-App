@@ -44,6 +44,8 @@ Give examples
    - `\password` then enter password twice
    - add a `.env` file to root directory and set the db password like this `DATABASE_PASSWORD=<DB_PASSWORD_HERE>`
 
+  #### NOTE - if you get a message about yarn integrity not found or something similar then you can fix it by adding this line `config.webpacker.check_yarn_integrity = false` to the `/config/environments/development.rb` file, I put it at the bottom but idk if it matters.
+
   Now we need to create the db before we can run migrations
    - `rails db:create`
    - `rails db:migrate`

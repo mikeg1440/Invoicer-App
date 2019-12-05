@@ -95,4 +95,12 @@ eger invoice_id:integer --no-fixture`
 
 ## Notes 12/4
 
-  
+## Notes 12/5
+
+  Need to add somethings on that we forgot in the beggining
+  - Add attributes to user model
+   - add business name
+   - add first and last name
+   - add address, city state zip
+  - Add expand attributes for client model
+   - Break up address to multiple fields (street, city, state, zip)
