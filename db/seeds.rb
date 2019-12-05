@@ -47,6 +47,8 @@ Invoice.all.each do |invoice|
   3.times do
     invoice_product = invoice.invoice_products.new
     invoice_product.product = Product.all.sample
+    invoice_product.quantity = rand(10)
+    invoice_product.total = invoice_product.quantity * invoice_product.product.price
     invoice.save
   end
 end
