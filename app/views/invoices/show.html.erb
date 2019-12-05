@@ -7,12 +7,12 @@
     <div class="col">
       <h4>Users Business Name</h4>
       <address class="">
-        1 Address Here City, State 00000
+        1 Address Here City, State 00000 (user address)
       </address>
     </div>
 
     <div class="col">
-      <h2>Invoice ID #</h2>
+      <h2>Invoice #: <%= @invoice.id %></h2>
     </div>
   </div>
 
@@ -20,20 +20,21 @@
     <div class="col">
       <h4>Bill To</h4>
       <p>
-        Name
-        Company
+        <%= @invoice.account.client.name %>
+        <%= @invoice.account.client.business_name %>
         <address class="">
-          2 Downtown Lane City, State 00000
+          <%= @invoice.account.client.address %>
         </address>
-        Telephone
-        Email Address
+        <%= @invoice.account.client.phone_number %>
+        <br>
+        <a href="<%= @invoice.account.client.email %>"><%= @invoice.account.client.email %></a>
       </p>
     </div>
 
     <div class="col">
-      <h5>Date</h5>
+      <h5>Date Created: <%= @invoice.created_at %></h5>
       <br>
-      <h5>Date Due</h5>
+      <h5>Date Due:  <%= @invoice.due_time %></h5>
     </div>
   </div>
 
@@ -81,6 +82,15 @@
         </div>
         <div class="col">
           $$
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          Grand Total Due:
+        </div>
+        <div class="col">
+          $$$
         </div>
       </div>
     </div>
