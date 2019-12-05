@@ -27,7 +27,7 @@ User.all.each do |user|
   due_time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 14)
 
   # create our new client
-  client = Client.create(name: client_name, business_name: business_name,email: "#{client_name}@mail.com", phone_number: Faker::PhoneNumber.cell_phone, address: Faker::Address.full_address)
+  client = Client.create(name: client_name, business_name: business_name,email: "#{client_name.gsub(" ","")}@mail.com", phone_number: Faker::PhoneNumber.cell_phone, address: Faker::Address.full_address)
 
   # create account and invoice for account
   account = Account.create(name: "Account for #{client_name}", user: user, client: client)
