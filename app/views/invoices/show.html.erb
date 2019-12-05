@@ -1,99 +1,13 @@
-<h1>Invoices#show</h1>
+<br><br>
+
 
 <div class="invoice">
 
-  <div class="row">
+  <% if @invoice %>
+    <%= render partial: 'invoice', locals: {invoice: @invoice} %>
+  <% else %>
+    <h4>No invoices to view yet!</h4>
+  <% end %>
 
-    <div class="col">
-      <h4>Users Business Name</h4>
-      <address class="">
-        1 Address Here City, State 00000 (user address)
-      </address>
-    </div>
-
-    <div class="col">
-      <h2>Invoice #: <%= @invoice.id %></h2>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <h4>Bill To</h4>
-      <p>
-        <%= @invoice.account.client.name %>
-        <%= @invoice.account.client.business_name %>
-        <address class="">
-          <%= @invoice.account.client.address %>
-        </address>
-        <%= @invoice.account.client.phone_number %>
-        <br>
-        <a href="<%= @invoice.account.client.email %>"><%= @invoice.account.client.email %></a>
-      </p>
-    </div>
-
-    <div class="col">
-      <h5>Date Created: <%= @invoice.created_at %></h5>
-      <br>
-      <h5>Date Due:  <%= @invoice.due_time %></h5>
-    </div>
-  </div>
-
-  <div class="row border border-dark">
-    <div class="col">
-      <center>
-        <h4>Main Content</h4>
-      </center>
-
-      <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col" colspan="2">Description</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Rate</th>
-            <th scope="col">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row" colspan="1">1</th>
-            <td colspan="2">Short description of product or service</td>
-            <td>##</td>
-            <td>$$</td>
-            <td>$$$$</td>
-          </tr>
-        </tbody>
-      </table>
-
-
-    </div>
-  </div>
-
-  <div class="row border border-dark">
-
-    <div class="col">
-
-    </div>
-
-    <div class="col">
-      <div class="row">
-        <div class="col">
-          Sub Total:
-        </div>
-        <div class="col">
-          $$
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          Grand Total Due:
-        </div>
-        <div class="col">
-          $$$
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div>
