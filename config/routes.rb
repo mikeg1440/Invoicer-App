@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # get 'invoices/index'
+  # get 'invoices/new'
+  # get 'invoices/show'
+  # get 'invoices/edit'
   # get 'accounts/index'
   # get 'accounts/show'
   # get 'accounts/new'
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
   root 'application#welcome'
   resources :clients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :invoices, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
