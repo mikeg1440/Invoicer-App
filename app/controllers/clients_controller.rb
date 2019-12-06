@@ -1,4 +1,8 @@
 class ClientsController < ApplicationController
+  before_action :authenticate_user!
+
+
+
   def index
     @clients = current_users_clients
   end
@@ -25,11 +29,18 @@ class ClientsController < ApplicationController
 
   def edit
     @client = Client.find_by(id: params[:id])
-    binding.pry
   end
 
   def update
     binding.pry
+    @client = Client.find_by(id: params[:id])
+    if @client.update(client_params)
+      flash[:notice] = "Client updated successfully!"
+      redirect_to @client
+    else
+      flash[:alert] = "Failed to update client!"
+      render edit
+    end
   end
 
   def destroy
