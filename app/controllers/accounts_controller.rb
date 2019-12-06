@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @accounts = current_user.accounts
   end
@@ -22,7 +24,7 @@ class AccountsController < ApplicationController
   end
 
   def update
-    binding.pry    
+    binding.pry
   end
 
 end
