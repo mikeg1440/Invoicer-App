@@ -12,6 +12,7 @@ require("channels")
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require nested_form_fields
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
