@@ -32,7 +32,6 @@ class ClientsController < ApplicationController
   end
 
   def update
-    binding.pry
     @client = Client.find_by(id: params[:id])
     if @client.update(client_params)
       flash[:notice] = "Client updated successfully!"
