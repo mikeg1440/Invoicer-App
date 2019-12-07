@@ -56,7 +56,7 @@
 
         <tr>
           <th scope="row" colspan="1"><%= invoice_product.product.id %></th>
-          <td colspan="2"><% invoice_product.product.description %></td>
+          <td colspan="2"><%= invoice_product.product.description %></td>
           <td><%= invoice_product.quantity %></td>
           <td>$<%= invoice_product.product.price %></td>
           <td>$<%= invoice_product.total %><td>
@@ -94,7 +94,7 @@
         Grand Total Due:
       </div>
       <div class="col">
-        <!--  we need to fix the precision on the totals at some point -->        
+        <!--  we need to fix the precision on the totals at some point -->
         $<%= invoice.grand_total.to_f.round(2) %>
       </div>
     </div>
