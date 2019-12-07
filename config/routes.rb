@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
 
-  # get 'invoices/index'
-  # get 'invoices/new'
-  # get 'invoices/show'
-  # get 'invoices/edit'
-  # get 'accounts/index'
-  # get 'accounts/show'
-  # get 'accounts/new'
-  # get 'accounts/edit'
-  # get 'clients/index'
-  # get 'clients/show'
-  # get 'clients/new'
-  # get 'clients/edit'
-
   root 'application#welcome'
   resources :clients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
