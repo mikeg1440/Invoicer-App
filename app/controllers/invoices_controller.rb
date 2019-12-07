@@ -6,6 +6,19 @@ class InvoicesController < ApplicationController
   end
 
   def new
+    @invoice = current_user.invoices.build
+  end
+
+  def create
+    @invoice = current_user.invoices.build(invoice_params)
+    if @invoice.save
+      @invoice.calculate_product_totals
+      flash[:notice] = "Invoice created successfully!"
+      redirect_to invoice_path(@invoice)
+    else
+      flash[:alert] = @invoice.errors.full_messages.uniq
+      render :new
+    end
   end
 
   def show
@@ -13,6 +26,8 @@ class InvoicesController < ApplicationController
   end
 
   def edit
+    binding.pry
+    
   end
 
   def destroy
@@ -24,5 +39,11 @@ class InvoicesController < ApplicationController
       flash[:alert] = "Invoice could not be deleted!"
       render :index
     end
+  end
+
+  private
+
+  def invoice_params
+    params.require(:invoice).permit(:id, :account_id, :created_at, :due_time, invoice_products_attributes: [:product_id, :quantity])
   end
 end
