@@ -1,1 +1,102 @@
 <h1>Welcome Page!</h1>
+
+<div class="invoice p-5">
+
+  <div class="row">
+
+    <div class="col">
+
+      <h2>Invoicer App</h2>
+      <h4>An app for generating invoices</h4>
+
+    </div>
+
+    <div class="col">
+      <%= image_tag "logo.png", class: 'float-right'  %>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+      <h4>Created By:</h4>
+      <h5>
+        Michael Gaudreau <br>
+        203 Main Street <br>
+        Hartford, CT 06106
+      </h5>
+    </div>
+
+    <div class="row">
+
+      <div class="col m-4">
+        <h3>Invioce ID: <%= Invoice.all.count %> </h3> <br>
+        <h5>Date:     <span class="font-weight-bold"><%= DateTime.now.strftime("%c") %></span></h5>  <br>
+        <h5>Due Date: <span class="font-weight-bold"><%= (DateTime.now+7).strftime("%c") %></span></h5>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" colspan="2">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <th scope="row" colspan="1">1</th>
+            <td colspan="2">A simple app to create invoices that can be sent to clients, who can then accept or reject the invoice.</td>
+            <td>1</td>
+            <td>$0.00</td>
+            <td>FREE!<td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-8">
+
+    </div>
+
+    <div class="col-4">
+
+      <div class="row">
+        <div class="col">
+          Sub Total:<br>
+          Grand Total:
+        </div>
+
+        <div class="col">
+          $0.00 <br>
+          FREE!
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
