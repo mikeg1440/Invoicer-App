@@ -1,13 +1,17 @@
 
 
-<h1>Invoices#new</h1>
+<h1 class="text-center">Create new Invoice</h1>
 
+<% if current_user.clients.count < 1 %>
 
+  <div class="alert alert-danger">
+    You have no clients to select yet! <br>
+    Please <%= link_to "create a client", new_client_path %> before creating a invoice!
+  </div>
 
-<br><br>
+<% end %>
 
-
-<div class="invoice">
+<div class="invoice mt-5">
 
   <%= form_for @invoice do |f| %>
 
