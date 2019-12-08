@@ -104,3 +104,7 @@ eger invoice_id:integer --no-fixture`
    - add address, city state zip
   - Add expand attributes for client model
    - Break up address to multiple fields (street, city, state, zip)
+
+  Created the account view and client view as well as the invoice with nested forms for invoice_products, struggled with getting github omni auth set but got it done eventually.  
+
+  Next added some styling and finish formatting some forms for client and account views.  
