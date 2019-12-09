@@ -4,7 +4,7 @@
 
     <hr>
 
-      <%= link_to account_info(account), client_path(account.client)  %>
+      <%= link_to account.name, account_path(account)  %> - <%= link_to account.client.name, client_path(account.client) %>  => <%= link_to "Create New Invoice", new_account_invoice_path(account) %>
 
     <hr>
 
