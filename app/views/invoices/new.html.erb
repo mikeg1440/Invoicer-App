@@ -42,13 +42,24 @@
     <div class="row">
       <div class="col">
         <h4>Bill To</h4>
-        <%= f.select(:account_id, current_user.clients.collect {|c| [c.name, c.id]}, prompt: "Select") %>
+
+        <% if !!params[:account_id] %>
+          <%= f.select(:account_id, Client.all.collect {|c| [c.name, c.id]}, {prompt: "Select", selected: params[:account_id], disable: true}) %>
+        <% else %>
+          <div class="field">
+            <%= f.select(:account_id, current_user.clients.collect {|c| [c.name, c.id]}, prompt: "Select") %>
+          </div>
+        <% end %>
       </div>
 
       <div class="col">
-        <h5>Date Created: <%= f.date_field  :created_at, value: DateTime.now  %></h5>
+        <div class="field">
+          <h5>Date Created: <%= f.date_field  :created_at, value: Time.now.strftime('%Y-%m-%d')  %></h5>
+        </div>
         <br>
-        <h5>Date Due: <%= f.date_field :due_time, value: DateTime.now %> </h5>
+          <div class="field">
+            <h5>Date Due: <%= f.date_field :due_time, value: (Time.now+7*86400).strftime('%Y-%m-%d') %> </h5>
+          </div>
       </div>
     </div>
 
@@ -72,12 +83,6 @@
           <tbody id="table-body" >
 
             <%= render partial: 'field', locals: {f: f} %>
-
-            <div class="hidden" id="newField">
-
-              <%= render partial: 'field', locals: {f: f} %>
-            </div>
-
 
             <a href="#" class="btn btn-primary" id="field-generator">Add Product</a>
           </tbody>
@@ -158,34 +163,3 @@
   }
 
 </script>
-
-
-
-<!-- <script type="text/javascript">
-  function addField(){
-    var tBody = document.getElementById("table-body");
-
-    var tRow = tBody.insertRow(0);
-
-    var rowID = tRow.insertCell(0);
-    rowID.innerHTML = tBody.rows.length;
-
-    var rowProduct = tRow.insertCell(1);
-    var str = "product_form.options(:product_id, current_user.products.collect {|p| [p.name, p.id]})";
-    rowProduct.innerHTML = ` ${str} `;
-
-    var rowDescription = tRow.insertCell(2);
-    rowDescription.innerHTML = "This is description";
-
-    var rowQty = tRow.insertCell(3);
-    rowQty.innerHTML = 1;
-
-    var rowRate = tRow.insertCell(4);
-    rowRate.innerHTML = "RATE";
-
-    var rowAmount = tRow.insertCell(5);
-    rowAmount.innerHTML = "Total"
-
-  }
-
-</script> -->
