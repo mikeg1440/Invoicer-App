@@ -1,1 +1,26 @@
 <h1>Products#show</h1>
+
+<div class="row">
+
+  <div class="card info-card col-8">
+
+    <div class="row">
+      Name: <%= @product.name %>
+    </div>
+
+    <div class="row">
+      Description: <%= @product.description %>
+    </div>
+
+    <div class="row">
+      Price/Rate: <%= @product.price %>
+    </div>
+
+  </div>
+
+  <div class="col-4">
+    <%= link_to "Edit", edit_product_path(product), class: 'btn btn-warning' %>
+    <%= button_to "Delete", destroy_product_path(product), class: 'btn btn-danger' %>
+  </div>
+
+</div>

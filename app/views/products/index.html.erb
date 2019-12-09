@@ -1,1 +1,17 @@
 <h1>Products</h1>
+
+<div class="card p-4">
+  <div class="card-header d-flex flex-row bd-highlight p-4">
+
+    <div class="pr-2">
+      <%= button_to "Create New Product",new_product_path, method: 'get',class: 'btn btn-primary' %>
+    </div>
+
+  </div>
+
+  <% @products.each do |product| %>
+
+    <%= link_to product.name, product, class: 'card-info p-3' %>
+
+  <% end %>
+</div>
