@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   delete '/accounts/:id', to: 'accounts#destroy'
   resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  delete '/products/:id', to: 'products#destroy', as: "destroy_product"
   resources :invoices, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   scope :users do
