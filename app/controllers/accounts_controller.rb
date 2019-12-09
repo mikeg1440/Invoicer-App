@@ -14,8 +14,10 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = current_user.accounts.build(account_params)
+    @account = current_user.accounts.find_or_build_by(account_params, current_user)
+    binding.pry
     if @account.save
+
       flash[:notice] = "Account created successfully!"
       redirect_to account_path(@account)
     else
@@ -25,6 +27,19 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    binding.pry
+    @account = current_user.accounts.find_by(id: params[:id])
+    # if @account.update(account_params)
+    #   flash[:notice] = "Account updated successfully!"
+    #   redirect_to account_path(@account)
+    # else
+    #   flash[:alert] = @account.errors.full_messages.uniq
+    #   render :edit
+    # end
+
+  end
+
+  def update
     binding.pry
     @account = current_user.accounts.find_by(id: params[:id])
     if @account.update(account_params)
@@ -37,8 +52,15 @@ class AccountsController < ApplicationController
 
   end
 
-  def update
-    binding.pry
+  def destroy
+    @account = current_user.accounts.find_by(id: params[:id])
+    if @account.destroy
+      flash[:notice] = "Successfully deleted account!"
+      redirect_to accounts_path
+    else
+      flash[:alert] = "Failed to delete account!"
+      render :show
+    end
   end
 
   private

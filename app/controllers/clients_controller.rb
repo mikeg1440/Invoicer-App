@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
 
 
   def index
-    @clients = current_users_clients
+    @clients = Client.all
   end
 
   def show
@@ -16,7 +16,7 @@ class ClientsController < ApplicationController
   end
 
   def create
-    client = current_user.clients.build(client_params)
+    client = current_user.clients.find_or_build_by(client_params, current_user)
     if client.valid?
       client.save
       flash[:notice] = "Client successfully created!"
