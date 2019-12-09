@@ -21,7 +21,10 @@
         <div class="alert alert-<%= key == 'alert' ? "danger" : "primary" %>"><%= value %></div>
       <% end %>
 
-      <%= yield %>
+
+      <div class="invoice">
+        <%= yield %>
+      </div>
     </div>
 
   </body>
