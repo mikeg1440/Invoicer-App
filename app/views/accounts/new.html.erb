@@ -1,51 +1,24 @@
 
-<div class="invoice">
 
-  <h1>Create New Account</h1>
+<h1>Create New Account</h1>
 
-  <h4 class="float-right">Current Account Holder: <%= current_user.username %></h4>
+<h4 class="float-right">Current Account Holder: <%= current_user.username %></h4>
 
-  <%= form_for @account do |f| %>
+<%= render partial: 'account', locals: {account: @account} %>
 
-    <div class="field">
-      <%= f.label :name, "Account Name:" %>
-      <%= f.text_field :name, placeholder: 'Name', class: 'form-control', class: 'form-control col-6' %>
-    </div>
+<script type="text/javascript">
 
-    <div class="field">
-      <%= f.label :client, 'Select Existing Client: ' %>
-      <%= f.collection_select(:client_id, Client.all, :id, :name, {prompt: true}, {class: 'form-control col-6', placeholder: 'Select Client'}) %>
-    </div>
+  clientSelect = document.getElementById("client-selector");
+  newForm = document.getElementsByClassName("card")[0];
+  // showClientBtn = document.getElementById("showClients");
 
-    <div class="card mt-4">
+  clientSelect.addEventListener('change', function(){
+    newForm.hidden = true;
+  });
 
-      <div class="row">
-        <div class="col m-4">
+  newForm.addEventListener('change', function(){
+    clientSelect.hidden = true;
+    // showClientBtn.hidden = false;
+  });
 
-          <h5>Create New Client</h5>
-          <%= f.fields_for :client, current_user.clients.build do |ff| %>
-
-            <%= render partial: 'client', locals: {f: ff} %>
-
-          <% end %>
-
-
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-10">
-      </div>
-
-      <div class="col-2 mt-3 action">
-        <%= f.submit class: 'btn btn-primary' %>
-      </div>
-
-    </div>
-
-  <% end %>
-
-
-</div>
+</script>
