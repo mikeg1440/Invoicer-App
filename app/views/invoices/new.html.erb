@@ -9,6 +9,13 @@
     Please <%= link_to "create a client", new_client_path %> before creating a invoice!
   </div>
 
+<% elsif current_user.products.empty? %>
+
+  <div class="alert alert-danger">
+    You have no products to add to a invoice yet!
+    Please <%= link_to "create a product", new_product_path %> before creating a invoice!
+  </div>
+
 <% end %>
 
 <div class="invoice mt-5">
@@ -65,6 +72,11 @@
           <tbody id="table-body" >
 
             <%= render partial: 'field', locals: {f: f} %>
+
+            <div class="hidden" id="newField">
+
+              <%= render partial: 'field', locals: {f: f} %>
+            </div>
 
 
             <a href="#" class="btn btn-primary" id="field-generator">Add Product</a>

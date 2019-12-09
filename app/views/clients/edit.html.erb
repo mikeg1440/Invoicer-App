@@ -1,3 +1,10 @@
-<h1>Clients#edit</h1>
 
-<%= render partial: 'form', locals: {client: @client} %>
+<h1 class="text-center">Edit Client</h1>
+
+<div class="p-4">
+
+  <%= form_for @client do |f| %>
+    <%= render partial: 'form', locals: {f: f} %>
+  <% end %>
+
+</div>

@@ -1,8 +1,10 @@
 
 
-<div class="invoice p-5">
+<div class="p-5">
   <h1 class="text-center">Create New Client</h1>
 
-  <%= render partial: 'form', locals: {client: @client} %>
+  <%= form_for @client do |f| %>
+    <%= render partial: 'form', locals: {f: f} %>
+  <% end %>
 
 </div>
