@@ -1,35 +1,45 @@
-<h1>Product Show Page</h1>
 
-<div class="row p-4">
+<% if @product %>
 
-  <div class="card info-card col-10 p-4">
+  <h1>Viewing Product: <%= @product.name %></h1>
 
-    <div class="row">
-      <div class="col">
-        <h5>Name: &nbsp; </h5>
-        <h4><%= @product.name.prepend(" ") %></h4>
+  <div class="row p-4">
+
+    <div class="card bg-light mb-3 col-10 p-4">
+
+      <div class="row card-header">
+        <div class="col">
+          <h5>Name: &nbsp; </h5>
+          <h4><%= @product.name.prepend(" ") %></h4>
+        </div>
+
+        <div class="col">
+          <h5>Price/Rate: &nbsp;</h5>
+          <h4>$<%= @product.price %></h4>
+        </div>
+
       </div>
 
-      <div class="col">
-        <h5>Price/Rate: &nbsp;</h5>
-        <h4>$<%= @product.price %></h4>
+      <div class="row card-body">
+        <h5>Description: &nbsp;</h5>
+        <%= @product.description %>
+      </div>
+
+      <div class="row">
       </div>
 
     </div>
 
-    <div class="row well">
-      <h5>Description: &nbsp;</h5>
-      <%= @product.description %>
-    </div>
-
-    <div class="row">
+    <div class="col-2">
+      <%= link_to "Edit", edit_product_path(@product), class: 'btn btn-warning' %>
+      <%= button_to "Delete", destroy_product_path(@product), class: 'btn btn-danger' %>
     </div>
 
   </div>
 
-  <div class="col-2">
-    <%= link_to "Edit", edit_product_path(@product), class: 'btn btn-warning' %>
-    <%= button_to "Delete", destroy_product_path(@product), class: 'btn btn-danger' %>
-  </div>
+<% else %>
 
-</div>
+  <h1>That product does not exist!</h1>
+  <h3>You can create it <%= link_to "here", new_product_path %></h3>
+
+<% end %>
