@@ -5,7 +5,11 @@
   <div class="card-header d-flex flex-row bd-highlight p-4">
 
     <div class="pr-2">
-      <%= button_to "Create Invoice",new_invoice_path, method: 'get',class: 'btn btn-primary' %>
+      <% if params[:account_id] %>
+        <%= button_to "Create Invoice",new_account_invoice_path, method: 'get',class: 'btn btn-primary' %>
+      <% else %>
+        <%= button_to "Create Invoice",new_invoice_path, method: 'get',class: 'btn btn-primary' %>
+      <% end %>
     </div>
 
     <div class="container-fluid mr-0">
