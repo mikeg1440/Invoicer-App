@@ -1,4 +1,4 @@
-<h1>Welcome Page!</h1>
+<h1>Welcome <%= current_user.try(:username)  %>!</h1>
 
 <div class="invoice p-5">
 
