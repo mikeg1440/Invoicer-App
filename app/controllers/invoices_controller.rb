@@ -2,7 +2,11 @@ class InvoicesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @invoices = current_user.invoices
+    if !!params[:account_id]
+      @invoices = current_user.accounts.find_by(id: params[:account_id]).invoices
+    else
+      @invoices = current_user.invoices
+    end
   end
 
   def new
@@ -10,6 +14,7 @@ class InvoicesController < ApplicationController
   end
 
   def create
+    binding.pry
     @invoice = current_user.invoices.build(invoice_params)
     if @invoice.save
       @invoice.calculate_product_totals
@@ -23,11 +28,12 @@ class InvoicesController < ApplicationController
 
   def show
     @invoice = current_user.invoices.find_by(id: params[:id])
+    binding.pry
   end
 
   def edit
     binding.pry
-    
+
   end
 
   def destroy
