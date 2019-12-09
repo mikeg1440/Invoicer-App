@@ -1,26 +1,35 @@
-<h1>Products#show</h1>
+<h1>Product Show Page</h1>
 
-<div class="row">
+<div class="row p-4">
 
-  <div class="card info-card col-8">
+  <div class="card info-card col-10 p-4">
 
     <div class="row">
-      Name: <%= @product.name %>
+      <div class="col">
+        <h5>Name: &nbsp; </h5>
+        <h4><%= @product.name.prepend(" ") %></h4>
+      </div>
+
+      <div class="col">
+        <h5>Price/Rate: &nbsp;</h5>
+        <h4>$<%= @product.price %></h4>
+      </div>
+
+    </div>
+
+    <div class="row well">
+      <h5>Description: &nbsp;</h5>
+      <%= @product.description %>
     </div>
 
     <div class="row">
-      Description: <%= @product.description %>
-    </div>
-
-    <div class="row">
-      Price/Rate: <%= @product.price %>
     </div>
 
   </div>
 
-  <div class="col-4">
-    <%= link_to "Edit", edit_product_path(product), class: 'btn btn-warning' %>
-    <%= button_to "Delete", destroy_product_path(product), class: 'btn btn-danger' %>
+  <div class="col-2">
+    <%= link_to "Edit", edit_product_path(@product), class: 'btn btn-warning' %>
+    <%= button_to "Delete", destroy_product_path(@product), class: 'btn btn-danger' %>
   </div>
 
 </div>
