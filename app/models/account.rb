@@ -7,7 +7,7 @@ class Account < ApplicationRecord
 
   accepts_nested_attributes_for :client, reject_if: :all_blank, allow_destroy: true
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 
   validates :user, presence: true
 
