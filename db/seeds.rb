@@ -33,13 +33,17 @@ User.all.each do |user|
   account = Account.create(name: "Account for #{client_name}", user: user, client: client)
   account.invoices.build(due_time: due_time, status: 'draft')
   account.save
+
+  # create 3 products
+    3.times do
+      product = Product.create(name: Faker::Commerce.product_name, price: Faker::Commerce.price, description: Faker::Lorem.sentence(word_count: 13))
+      product.user = user
+      product.save
+      binding.pry
+    end
+
 end
 
-# create 5 products
-  5.times do
-    product = Product.create(name: Faker::Commerce.product_name, price: Faker::Commerce.price, description: Faker::Lorem.sentence(word_count: 13))
-    product.save
-  end
 
 
 # add 3 products to each invoice using invoice_products
@@ -47,6 +51,7 @@ Invoice.all.each do |invoice|
   3.times do
     invoice_product = invoice.invoice_products.new
     invoice_product.product = Product.all.sample
+    binding.pry
     invoice_product.quantity = rand(10)
     invoice_product.total = invoice_product.quantity * invoice_product.product.price
     invoice.save

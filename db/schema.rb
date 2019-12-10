@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(version: 2019_12_09_005126) do
     t.integer "product_id"
     t.integer "invoice_id"
     t.integer "total"
-    t.integer "quantity"
+    t.integer "quantity", default: 1
   end
 
   create_table "invoices", force: :cascade do |t|
     t.integer "amount_due"
     t.datetime "due_time"
-    t.string "status"
+    t.string "status", default: "unsent"
     t.integer "account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
