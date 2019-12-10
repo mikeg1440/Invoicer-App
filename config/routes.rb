@@ -3,10 +3,14 @@ Rails.application.routes.draw do
   root 'application#welcome'
   # resources :clients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-  resources :accounts, only: [:show] do
+  resources :accounts, only: [:show, :new, :edit] do
     resources :invoices, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
 
+  get '/test', to: 'clients#test'
+  post '/test', to: 'clients#test'
+  get '/add_field', to: 'invoices#add_field', as: 'add_field'
+  post '/add_field', to: 'invoices#add_field'
   resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   delete '/accounts/:id', to: 'accounts#destroy'
