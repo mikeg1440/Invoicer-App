@@ -1,15 +1,27 @@
 
 
-<%= f.fields_for :invoice_products, @invoice.invoice_products.build do |product_field| %>
 
 
+<%# <%= f.fields_for :invoice_products, @invoice.invoice_products.build do |ff| %>
   <tr id="row-0">
-    <th scope="row" id="product-num" colspan="1">0</th>
-    <td colspan="5"><%= product_field.select :product_id, options_from_collection_for_select(current_user.products, :id, :name) %></td>
-    <td><%= product_field.text_field :quantity, class: 'col-md-3' %></td>
-    <td><%= product_field.text_field :total, class: 'col-md-3' %></td>
-    <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
+    <%= ff.hidden_field :_destroy %>
+    <th scope="row" id="product-num" colspan="1"></th>
+
+    <div class="field">
+      <td colspan="5"><%= ff.select :product_id, options_from_collection_for_select(Product.all, :id, :name) %></td>
+    </div>
+
+    <div class="field">
+      <td><%= ff.text_field :quantity, class: 'col-md-3' %></td>
+    </div>
+
+    <div class="field">
+      <td><%= ff.text_field :total, class: 'col-md-3' %></td>
+    </div>
+
+    <div class="field">
+      <td><%= link_to "Delete", "#", class: 'remove-field' %></td>
+    </div>
   </tr>
 
-
-<% end %>
+<%# <% end %>
