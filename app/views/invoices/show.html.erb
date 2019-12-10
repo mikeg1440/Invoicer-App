@@ -4,9 +4,9 @@
 <div class="invoice">
 
   <% if @invoice %>
-    <%= render partial: 'invoice', locals: {invoice: @invoice} %>
+    <%= render partial: 'show_invoice', locals: {invoice: @invoice} %>
   <% else %>
-    <h4>No invoices to view yet!</h4>
+    <h4>Invoice does not exist!</h4>
   <% end %>
 
 

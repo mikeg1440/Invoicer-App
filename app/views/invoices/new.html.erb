@@ -20,122 +20,7 @@
 
 <div class="invoice mt-5">
 
-  <%= form_for @invoice do |f| %>
-
-    <div class="row">
-
-      <div class="col">
-        <h4>Users Business Name</h4>
-        <address class="">
-          1 Address Here City, State 00000 (user address)
-        </address>
-      </div>
-
-      <div class="col">
-        <span class="inline-headers">
-          <h2>Invoice ID: <%= f.text_field :id, class: 'inline-headers col-md-2', value: Invoice.all.count+1 %>  </h2>
-        </span>
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <h4>Bill To</h4>
-
-        <% if !!params[:account_id] %>
-          <%= f.select(:account_id, Client.all.collect {|c| [c.name, c.id]}, {prompt: "Select", selected: params[:account_id], disable: true}) %>
-        <% else %>
-          <div class="field">
-            <%= f.select(:account_id, current_user.clients.collect {|c| [c.name, c.id]}, prompt: "Select") %>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="col">
-        <div class="field">
-          <h5>Date Created: <%= f.date_field  :created_at, value: Time.now.strftime('%Y-%m-%d')  %></h5>
-        </div>
-        <br>
-          <div class="field">
-            <h5>Date Due: <%= f.date_field :due_time, value: (Time.now+7*86400).strftime('%Y-%m-%d') %> </h5>
-          </div>
-      </div>
-    </div>
-
-    <div class="row border border-dark">
-      <div class="col">
-        <center>
-          <h4>Main Content</h4>
-        </center>
-
-        <table class="table table-dark">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col" colspan="5">Product</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Amount</th>
-            </tr>
-          </thead>
-
-
-          <tbody id="table-body" >
-
-            <%= render partial: 'field', locals: {f: f} %>
-
-            <a href="#" class="btn btn-primary" id="field-generator">Add Product</a>
-          </tbody>
-
-
-        </table>
-
-
-      </div>
-    </div>
-
-    <div class="row border border-dark">
-
-      <div class="col">
-
-      </div>
-
-      <div class="col">
-        <div class="row">
-          <div class="col">
-            Sub Total:
-          </div>
-          <div class="col">
-            <!--  we need to fix the precision on the totals at some point -->
-            $
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            Grand Total Due:
-          </div>
-          <div class="col">
-            <!--  we need to fix the precision on the totals at some point -->
-            $
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="row action">
-      <div class="col-10">
-      </div>
-
-      <div class="float-right col-2">
-        <%= f.submit class: 'btn btn-primary' %>
-      </div>
-
-    </div>
-
-
-  <% end %>
+  <%= render partial: 'invoice_form', locals: {invoice: @invoice}  %>
 
 </div>
 
@@ -144,22 +29,17 @@
 
   document.addEventListener("DOMContentLoaded", function(){
 
-    var tBody = document.getElementById("table-body");
-    var row = tBody.firstElementChild;
-    var btn = document.getElementById("field-generator");
-    var watchEvent = btn.addEventListener('click', function(event){
-      var newRow = row.cloneNode(true);
+    let tBody = document.getElementById("table-body");
+    let addBtn = document.getElementById("addProductBtn");
 
-      newRow.children[0].innerHTML = tBody.rows.length;
-      newRow.id = "row-"+tBody.rows.length;
-      tBody.appendChild(newRow);
-    }, false);
+    function nameFields(){
+      let selects = tBody.getElementsByTagName('select');
+      for (var i=0;i < selects.length; i++){ selects[i].name = "invoice[invoice_products_attributes][" +i+ "][product_id]"; }
+    }
+
+    addBtn.addEventListener('click', function(){
+      setTimeout(nameFields, 300);
+    })
 
   });
-
-  function removeRow(btn) {
-    row = btn.parentNode.parentNode;
-    row.parentNode.removeChild(row);
-  }
-
 </script>
