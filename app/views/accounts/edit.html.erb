@@ -1,3 +1,22 @@
 <h1>Edit Account</h1>
 
-<%= render partial: 'account' %>
+
+<% if @account %>
+  <%= form_for @account do |f| %>
+
+    <%= render partial: 'account', locals: {f: f} %>
+
+    <div class="row p-4">
+      <div class="col-9">
+      </div>
+      <div class="col action">
+        <%= f.submit class: 'btn btn-primary' %>
+
+      </div>
+    </div>
+  <% end %>
+
+
+<% else %>
+  <h2>No account found!</h2>
+<% end %>

@@ -3,9 +3,21 @@
   <% accounts.each do |account| %>
 
     <hr>
+      <div class="row">
+        <div class="col">
+          <%= link_to account.name, account_path(account) %>
+        </div>
 
-      <%= link_to account.name, account_path(account)  %> - <%= link_to account.client.name, client_path(account.client) %>  => <%= link_to "Create New Invoice", new_account_invoice_path(account) %>
+        <div class="col">
+          <%= link_to account.client.name, client_path(account.client) %>
+        </div>
 
+        <div class="col">
+          <%= link_to "Create New Invoice", new_account_invoice_path(account), class: 'btn btn-primary' %>
+          <%= link_to "View Invoices", account_invoices_path(account), class: 'btn btn-info' %>
+        </div>
+
+      </div>
     <hr>
 
   <% end %>
