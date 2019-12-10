@@ -10,11 +10,11 @@ class Invoice < ApplicationRecord
 
 
   def sub_total
-    # require 'pry'; binding.pry
-    self.invoice_products.sum(&:total)
+    self.invoice_products.each {|product_line| product_line.total = product_line.product.price * product_line.quantity}
   end
 
   def grand_total
+    sub_total
     # if we add options for tax calculation this is were we would do it, for now its the same as sub total
     self.invoice_products.sum(&:total)
   end
