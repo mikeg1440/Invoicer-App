@@ -11,7 +11,17 @@
 
   <% @products.each do |product| %>
 
-    <%= link_to product.name, product, class: 'card-info p-3' %>
+    <div class="row p-1">
+      <div class="col">
+      </div>
 
+      <div class="col-10">
+        <%= link_to product.name, product, class: 'card p-2 text-white bg-info mb-3 d-sm-inline-flex' %>
+      </div>
+
+      <div class="col">
+      </div>
+
+    </div>
   <% end %>
 </div>

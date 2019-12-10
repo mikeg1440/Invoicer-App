@@ -1,7 +1,12 @@
-<h1>Products#edit</h1>
+<h1 class="text-center">Edit Product</h1>
 
-<%= form_for @product do |f| %>
+<% if @product %>
+  <%= form_for @product do |f| %>
 
-  <%= render partial: 'form', locals: {f: f} %>
+    <%= render partial: 'form', locals: {f: f} %>
 
+  <% end %>
+
+<% else %>
+  <h2 class="alert alert-danger">You can't edit products you didn't create!</h2>
 <% end %>

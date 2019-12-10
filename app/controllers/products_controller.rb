@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @products = current_user.products
+    @products = Product.all
+    # @products = current_user.products
   end
 
   def new
@@ -15,7 +16,7 @@ class ProductsController < ApplicationController
       flash[:notice] = "Successfully created new product!"
       redirect_to @product
     else
-      flash[:alert] = "Failed to create product!"
+      flash[:alert] = @product.errors.full_messages
       render :new
     end
   end
@@ -25,17 +26,19 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @product = current_user.products.find_by(id: params[:id])
     if @product.update(product_params)
       flash[:notice] = "Successfully updated product!"
       redirect_to @product
     else
-      flash[:alert] = "Failed to update product!"
+      flash[:alert] = @product.errors.full_messages
       render :edit
     end
   end
 
   def show
-    @product = current_user.products.find_by(id: params[:id])
+    # @product = current_user.products.find_by(id: params[:id])
+    @product = Product.find_by(id: params[:id])
   end
 
   def destroy
