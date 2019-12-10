@@ -32,8 +32,19 @@ class InvoicesController < ApplicationController
   end
 
   def edit
-    binding.pry
+    @invoice = current_user.invoices.find_by(id: params[:id])
+    @invoice.invoice_products.build
+  end
 
+  def update
+    @invoice = current_user.invoices.find_by(id: params[:id])
+    if @invoice.update(invoice_params)
+      flash[:notice] = "Updated invoice successfully!"
+      redirect_to account_invoice_path(@invoice)
+    else
+      flash[:alert] = "Failed to update invoice!"
+      render :edit
+    end
   end
 
   def destroy
@@ -47,9 +58,15 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def add_field
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+  end
+
   private
 
   def invoice_params
-    params.require(:invoice).permit(:id, :account_id, :created_at, :due_time, invoice_products_attributes: [:product_id, :quantity])
+    params.require(:invoice).permit(:account_id, :created_at, :due_time, invoice_products_attributes: [:product_id, :quantity, :_destroy])
   end
 end
