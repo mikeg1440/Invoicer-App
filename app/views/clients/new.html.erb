@@ -5,6 +5,30 @@
 
   <%= form_for @client do |f| %>
     <%= render partial: 'form', locals: {f: f} %>
+
+    <%= fields_for :account, @client.accounts.build do |ff| %>
+
+      <div class="field p-5">
+        <h4>Create new client</h4>
+        <%= f.label :name, "Account Name:" %>
+        <%= f.text_field :name, placeholder: 'Name', class: 'form-control', class: 'form-control col-6' %>
+      </div>
+
+    <% end %>
+
+    <div class="row mt-5">
+      <div class="col-5">
+      </div>
+
+      <div class="col">
+        <div class="actions">
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+      </div>
+
+    </div>
+
+
   <% end %>
 
 </div>

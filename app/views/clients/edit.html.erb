@@ -5,6 +5,17 @@
 
   <%= form_for @client do |f| %>
     <%= render partial: 'form', locals: {f: f} %>
+
+    <div class="row mt-5">
+      <div class="col-5">
+      </div>
+      <div class="col">
+        <div class="actions">
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
   <% end %>
 
 </div>
