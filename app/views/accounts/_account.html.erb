@@ -1,45 +1,9 @@
-<%= form_for account do |f| %>
+<div class="field">
+  <%= f.label :name, "Account Name:" %>
+  <%= f.text_field :name, placeholder: 'Name', class: 'form-control', class: 'form-control col-6' %>
+</div>
 
-  <div class="field">
-    <%= f.label :name, "Account Name:" %>
-    <%= f.text_field :name, placeholder: 'Name', class: 'form-control', class: 'form-control col-6' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :client, 'Select Existing Client: ' %>
-    <%= f.collection_select(:client_id, Client.all, :id, :name, {prompt: true}, {class: 'form-control col-6', placeholder: 'Select Client', id: 'client-selector'}) %>
-  </div>
-
-  <div class="row">
-    <button type="button" id="showClients" onclick="showClients" hidden>Show Clients</button>
-  </div>
-
-  <div class="card mt-4">
-
-    <div class="row">
-      <div class="col m-4">
-
-        <h5>Create New Client</h5>
-        <%= f.fields_for :client, current_user.clients.build do |ff| %>
-
-          <%= render partial: 'clients/form', locals: {f: ff} %>
-
-        <% end %>
-
-
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div class="col-10">
-    </div>
-
-    <div class="col-2 mt-3 action">
-      <%= f.submit class: 'btn btn-primary' %>
-    </div>
-
-  </div>
-
-<% end %>
+<div class="field" id="client-select">
+  <%= f.label :client, 'Select Existing Client: ' %>
+  <%= f.collection_select(:client_id, Client.all, :id, :name, {prompt: true}, {class: 'form-control col-6', placeholder: 'Select Client', id: 'client-selector'}) %>
+</div>
