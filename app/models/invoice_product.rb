@@ -1,6 +1,6 @@
 class InvoiceProduct < ApplicationRecord
 
-  belongs_to :invoice
+  belongs_to :invoice, optional: true
   belongs_to :product
 
   validates :product_id, presence: :true
