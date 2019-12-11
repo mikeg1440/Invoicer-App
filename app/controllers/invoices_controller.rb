@@ -11,6 +11,7 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = current_user.invoices.build
+    @invoice.invoice_products.build
   end
 
   def create
