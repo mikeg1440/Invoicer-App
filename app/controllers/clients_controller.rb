@@ -28,7 +28,7 @@ class ClientsController < ApplicationController
   end
 
   def edit
-    @client = Client.find_by(id: params[:id])
+    @client = current_user.clients.find_by(id: params[:id])
   end
 
   def update
