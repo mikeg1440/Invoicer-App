@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:accept, :decline]
 
   def index
     if !!params[:account_id]
