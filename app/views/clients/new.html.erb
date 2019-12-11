@@ -9,7 +9,7 @@
     <%= fields_for :account, @client.accounts.build do |ff| %>
 
       <div class="field p-5">
-        <h4>Create new client</h4>
+        <h4>Create new account</h4>
         <%= f.label :name, "Account Name:" %>
         <%= f.text_field :name, placeholder: 'Name', class: 'form-control', class: 'form-control col-6' %>
       </div>
