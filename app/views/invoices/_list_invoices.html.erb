@@ -20,7 +20,7 @@
           <td colspan="3"><%= invoice.due_time.strftime("%Y-%m-%d") %></td>
           <td colspan="3"><%= link_to "Edit", edit_invoice_path(invoice), class: 'btn btn-info' %></td>
           <td><%= button_to "Delete", invoice, method: :delete, class: 'btn btn-danger' %></td>
-          <% if invoice.status != "sent" %>
+          <% if ['accepted', 'declined','sent'].include?(invoice.status) %>
             <td><%= link_to "Send", send_invoice_path(invoice), class: 'btn btn-primary' %></td>
           <% end %>
         </tr>

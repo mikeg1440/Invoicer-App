@@ -1,3 +1,4 @@
+
 <%= form_for invoice do |f| %>
 
   <div class="row">
@@ -11,7 +12,7 @@
 
     <div class="col">
       <span class="inline-headers">
-        <h2>Invoice ID: <%= invoice.id ||= Invoice.all.count+1 %>  </h2>
+        <h2>Invoice ID: <%= invoice.id || Invoice.all.count+1 %>  </h2>
       </span>
 
     </div>
@@ -41,26 +42,22 @@
     </div>
   </div>
 
-  <div class="row border border-dark">
+  <div class="row border border-dark bg-dark">
     <div class="col">
-      <center>
-        <h4>Main Content</h4>
-      </center>
-
       <table class="table table-dark">
-        <thead>
+        <thead class="text-center">
           <tr>
             <th scope="col">#</th>
-            <th scope="col" colspan="5">Product</th>
+            <th scope="col" >Product</th>
             <th scope="col">Quantity</th>
-            <th scope="col">Amount</th>
+            <th scope="col" >Total</th>
+            <th scope="col"></th>
           </tr>
         </thead>
 
-        <%= link_to "Add Product", add_field_path(format: :js), {method: :post, remote: true, id: "addProductBtn"} %>
         <tbody id="table-body" class="fields" >
 
-          <%= f.fields_for :invoice_products, @invoice.invoice_products.build do |ff| %>
+          <%= f.fields_for :invoice_products do |ff| %>
             <%= render partial: 'field', locals: {ff: ff } %>
           <% end %>
 
@@ -69,11 +66,11 @@
 
       </table>
 
-
     </div>
   </div>
 
-  <div class="row border border-dark">
+  <div class="row border border-dark p-2">
+    <%= link_to "Add Product", add_field_path(format: :js), {method: :post, remote: true, id: "addProductBtn", class: 'btn btn-primary'} %>
 
     <div class="col">
 
@@ -86,17 +83,17 @@
         </div>
         <div class="col">
           <!--  we need to fix the precision on the totals at some point -->
-          $
+          $ <%= @invoice.amount_due %>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row font-weight-bold">
         <div class="col">
           Grand Total Due:
         </div>
         <div class="col">
           <!--  we need to fix the precision on the totals at some point -->
-          $
+          $ <%= @invoice.grand_total unless request.url.match('/invoices/new')%>
         </div>
       </div>
     </div>
@@ -115,3 +112,56 @@
 
 
 <% end %>
+
+
+<script type="text/javascript">
+
+  function showTotal(e){
+    alert('workin');
+  }
+
+  function deleteRow(row){
+    row.parentNode.deleteRow(row.rowIndex-1);
+    return true;
+  }
+
+  $(".remove-field").on('click', function(e){
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    var elem = e.target;
+    var row = elem.parentNode.parentNode;
+    deleteRow(row);
+  });
+
+  document.addEventListener("DOMContentLoaded", function(){
+
+    let tBody = document.getElementById("table-body");
+    let addBtn = document.getElementById("addProductBtn");
+
+    function nameFields(){
+      let selects = tBody.getElementsByTagName('select');
+      for (var i=0;i < selects.length; i++){
+        selects[i].name = "invoice[invoice_products_attributes][" +i+ "][product_id]";
+        selects[i].id = "invoice[invoice_products_attributes][" +i+ "][product_id]";
+        selects[i].parentElement.previousSibling.previousSibling.append(i+1);
+        selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.name = "invoice[invoice_products_attributes]["+i+"][quantity]";
+        selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.id = "invoice[invoice_products_attributes]["+i+"][quantity]";
+      }
+    }
+
+    function numberProducts(){
+      let selects = tBody.getElementsByTagName('select');
+      for (var i=0;i < selects.length; i++){
+        selects[i].parentElement.previousSibling.previousSibling.append(i+1);
+      }
+    }
+
+    addBtn.addEventListener('click', function(){
+      setTimeout(nameFields, 300);
+    })
+
+    numberProducts();
+  });
+
+
+</script>

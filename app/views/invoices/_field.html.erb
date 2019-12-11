@@ -1,27 +1,22 @@
 
+<tr id="row-0 input-group">
+  <%= ff.hidden_field :_destroy %>
+  <th scope="row" id="product-num"></th>
+
+  <div class="field">
+  </div>
+  <td><%= ff.select :product_id, options_from_collection_for_select(Product.all, :id, :name), include_blank: 'Select a product' %></td>
 
 
+  <div class="field">
+  </div>
+  <td><%= ff.text_field :quantity, size: '1em', class: 'form-control text-center', onchange: 'showTotal(this)' %></td>
 
-<%# <%= f.fields_for :invoice_products, @invoice.invoice_products.build do |ff| %>
-  <tr id="row-0">
-    <%= ff.hidden_field :_destroy %>
-    <th scope="row" id="product-num" colspan="1"></th>
+  <div class="field">
+  </div>
+  <td><%= ff.text_field :total, size: '2em', class: 'form-control text-center', readonly: true %></td>
 
-    <div class="field">
-      <td colspan="5"><%= ff.select :product_id, options_from_collection_for_select(Product.all, :id, :name) %></td>
-    </div>
-
-    <div class="field">
-      <td><%= ff.text_field :quantity, class: 'col-md-3' %></td>
-    </div>
-
-    <div class="field">
-      <td><%= ff.text_field :total, class: 'col-md-3' %></td>
-    </div>
-
-    <div class="field">
-      <td><%= link_to "Delete", "#", class: 'remove-field' %></td>
-    </div>
-  </tr>
-
-<%# <% end %>
+  <div class="field">
+  </div>
+  <td><%= link_to "Delete", "#", class: 'btn btn-danger float-right remove-field' %></td>
+</tr>

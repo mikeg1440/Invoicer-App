@@ -23,23 +23,3 @@
   <%= render partial: 'invoice_form', locals: {invoice: @invoice}  %>
 
 </div>
-
-
-<script type="text/javascript">
-
-  document.addEventListener("DOMContentLoaded", function(){
-
-    let tBody = document.getElementById("table-body");
-    let addBtn = document.getElementById("addProductBtn");
-
-    function nameFields(){
-      let selects = tBody.getElementsByTagName('select');
-      for (var i=0;i < selects.length; i++){ selects[i].name = "invoice[invoice_products_attributes][" +i+ "][product_id]"; }
-    }
-
-    addBtn.addEventListener('click', function(){
-      setTimeout(nameFields, 300);
-    })
-
-  });
-</script>

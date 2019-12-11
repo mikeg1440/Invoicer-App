@@ -1,25 +1,17 @@
-<tr>
+
+  <tr id="input-group">
     <input type="hidden" value="false" name="invoice[invoice_products_attributes][0][_destroy]" id="invoice_invoice_products_attributes_0__destroy">
-    <th scope="row" id="product-num" colspan="1"></th>
+    <th scope="row" id="product-num">1</th>
 
-    <td colspan="5"><select name="invoice[invoice_products_attributes][0][product_id]" id="invoice_invoice_products_attributes_0_product_id"><option value="1">Fantastic Concrete Bottle</option>
-<option value="2">Gorgeous Wool Pants</option>
-<option value="3">Small Silk Plate</option>
-<option value="4">Awesome Iron Car</option>
-<option value="5">Synergistic Copper Bottle</option>
-<option value="6">Debugging</option>
-<option value="7">Rails App Coding</option>
-<option value="8">General Coding</option>
-<option value="9">Finish project</option>
-<option value="11">Code Review</option></select></td>
+    <td><%= select_tag :product_id, options_from_collection_for_select(Product.all, :id, :name), include_blank: 'Select a product'%></td>
 
 
-    <td><input class="col-md-3" type="text" name="invoice[invoice_products_attributes][1][quantity]" id="invoice_invoice_products_attributes_0_quantity"></td>
+    <td><input size="1em" class="form-control text-center" type="text" value="1" name="invoice[invoice_products_attributes][0][quantity]" id="invoice_invoice_products_attributes_0_quantity"></td>
 
 
-    <td><input class="col-md-3" type="text" name="invoice[invoice_products_attributes][1][total]" id="invoice_invoice_products_attributes_0_total"></td>
+    <td><input readonly size="2em" class="form-control text-center" type="text" name="invoice[invoice_products_attributes][0][total]" id="invoice_invoice_products_attributes_0_total"></td>
 
 
-    <td><a class="remove-field" href="#">Delete</a></td>
+    <td><a class="btn btn-danger float-right remove-field" href="#">Delete</a></td>
 
   </tr>
