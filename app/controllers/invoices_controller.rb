@@ -65,11 +65,29 @@ class InvoicesController < ApplicationController
     end
   end
 
-  def send_invoice
+  def accept
     @invoice = Invoice.find_by(id: params[:id])
-    @invoice.status = 'sent'
-    @invoice.save
-    binding.pry
+    if @invoice
+      flash[:notice] = "Thank you for accepting the invoice!  Payment instructions will be sent shortly."
+      @invoice.status = "accepted"
+      @invoice.save
+    else
+      flash[:alert] = "There seems to have been a issue accepting that invoice, please contact support"
+    end
+    render :'application/notice'
+  end
+
+
+  def decline
+    @invoice = Invoice.find_by(id: params[:id])
+    if @invoice
+      flash[:notice] = "You have successfully declined the invoice, please fill the forms below so we can understand why."
+      @invoice.status = "declined"
+      @invoice.save
+    else
+      flash[:alert] = "There seems to have been a issue accepting that invoice, please contact support"
+    end
+    render :'application/notice'
   end
 
   private
