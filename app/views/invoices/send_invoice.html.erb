@@ -1,0 +1,9 @@
+
+<div class="card text-center">
+
+  <% if @invoice %>
+    <h2>Invoice sent to <%= @invoice.account.client.email %></h2>
+  <% else %>
+    <h2 class="alert alert-danger">Invoice not found!</h2>
+  <% end %>
+</div>

@@ -64,6 +64,13 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def send_invoice
+    @invoice = Invoice.find_by(id: params[:id])
+    @invoice.status = 'sent'
+    @invoice.save
+    binding.pry
+  end
+
   private
 
   def invoice_params

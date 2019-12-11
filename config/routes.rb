@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   post '/test', to: 'clients#test'
   get '/add_field', to: 'invoices#add_field', as: 'add_field'
   post '/add_field', to: 'invoices#add_field'
+
+  get '/send_invoice/:id', to: 'invoices#send_invoice', as: 'send_invoice'
+
   resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   delete '/accounts/:id', to: 'accounts#destroy'
