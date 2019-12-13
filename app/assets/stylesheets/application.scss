@@ -23,9 +23,27 @@ body{
   background-repeat: no-repeat;
   font-family: 'Exo 2', sans-serif;
   background-size: cover;
+  height: 100%;
+}
+header{
+  margin-bottom: 135px;
+}
+footer{
+  margin-top: 125px;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
 
-
+.field{
+  padding: 2px;
+}
+.field_with_errors > select{
+  border-color: red;
+}
+.date-select{
+  width: 50%;
+}
 .invoice {
   margin: 35px;
   background-color: white;
