@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   belongs_to :user
   belongs_to :client
-  has_many :invoices
+  has_many :invoices, dependent: :destroy
   has_many :invoice_products, through: :invoices
   has_many :products, through: :invoice_products
 
@@ -9,11 +9,10 @@ class Account < ApplicationRecord
 
   validates :name, presence: true
 
-  validates :user, presence: true
 
   def self.find_or_build_by(params, user)
 
-    require 'pry-moves';binding.pry
+    require 'pry-moves';#binding.pry
     account = self.find_by(user_id: user.id, client_id: params[:client_id])
     if account
       account

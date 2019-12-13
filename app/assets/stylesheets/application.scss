@@ -15,10 +15,23 @@
  */
 @import "bootstrap";
 
+* {
+
+}
+body{
+  background-image: url('/assets/background.jpg');
+  background-repeat: no-repeat;
+  font-family: 'Exo 2', sans-serif;
+  background-size: cover;
+}
+
+
 .invoice {
+  margin: 35px;
+  background-color: white;
   padding: 20px;
   border: 1px solid #ccc;
-  box-shadow: 1px 1px 0 rgba(0,0,0,.1), 3px 3px 0 #fff, 4px 4px 0 rgba(0,0,0,.125), 6px 6px 0 #fff, 7px 7px 0 rgba(0,0,0,.15);
+  box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.1), 4px 4px 0 #fff, 5px 5px 0 rgba(0, 0, 0, 0.125), 8px 8px 0 #fff, 9px 9px 0 rgba(0, 0, 0, 0.15);
 }
 
 .form-signin {
