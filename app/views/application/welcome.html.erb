@@ -1,13 +1,17 @@
-<h1>Welcome <%= current_user.try(:username)  %>!</h1>
 
-<div class="invoice p-5">
+<% if user_signed_in? %>
+  <%= render partial: 'instructions' %>
+<% end %>
+
+<h1 class="text-center bg-info text-white">Welcome <%= current_user.try(:username)  %>!</h1>
+
+<div class="p-5">
 
   <div class="row">
 
     <div class="col">
-
-      <h2>Invoicer App</h2>
-      <h4>An app for generating invoices</h4>
+      <h2 class="border-left rounded border-info pl-2">Invoicer App</h2>
+      <h4 class="border-left rounded border-info pl-2">An app for generating invoices</h4>
 
     </div>
 
@@ -17,23 +21,27 @@
 
   </div>
 
-  <div class="row">
+  <div class="row p-2">
 
     <div class="col">
-      <h4>Created By:</h4>
-      <h5>
-        Michael Gaudreau <br>
-        203 Main Street <br>
-        Hartford, CT 06106
-      </h5>
+      <div class="flex border-info border p-2 col-6">
+        <h4>Created By:</h4>
+        <h5>
+          Michael Gaudreau <br>
+          203 Main Street <br>
+          Hartford, CT 06106
+        </h5>
+
+      </div>
     </div>
 
     <div class="row">
 
       <div class="col m-4">
         <h3>Invioce ID: <%= Invoice.all.count %> </h3> <br>
-        <h5>Date:     <span class="font-weight-bold"><%= DateTime.now.strftime("%c") %></span></h5>  <br>
-        <h5>Due Date: <span class="font-weight-bold"><%= (DateTime.now+7).strftime("%c") %></span></h5>
+        <h5>Current Date:     <span class="font-weight-bold"><%= DateTime.now.strftime("%Y-%m-%d") %></span></h5>  <br>
+        <h5 class="text-red">Due in <%= TimeDifference.between(DateTime.now, (DateTime.now+6)).humanize %></h5>
+        <h5><span class="font-weight-bold"><%= (DateTime.now+7).strftime("%Y-%m-%d") %></span></h5>
 
       </div>
 
@@ -73,7 +81,7 @@
 
   </div>
 
-  <div class="row">
+  <div class="row bg-info text-white pt-2 pb-2">
 
     <div class="col-8">
 
