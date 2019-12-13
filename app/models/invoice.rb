@@ -20,11 +20,10 @@ class Invoice < ApplicationRecord
     self.invoice_products.each {|p| total += p.total unless p.total.nil? }
     self.amount_due = total
     self.save
-    self.amount_due
+    total
   end
 
   def calculate_product_totals
-    binding.pry
     self.invoice_products.each do |line|
       line.total = line.product.price * line.quantity
     end
