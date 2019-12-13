@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    # @products = current_user.products
   end
 
   def new
@@ -12,14 +11,14 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.build(product_params)
-    if @product.save
-      flash[:notice] = "Successfully created new product!"
-      redirect_to @product
-    else
+    unless @product.save
       flash[:alert] = @product.errors.full_messages
       render :new
     end
+    flash[:notice] = "Successfully created new product!"
+    redirect_to @product
   end
+
 
   def edit
     @product = current_user.products.find_by(id: params[:id])
@@ -27,29 +26,27 @@ class ProductsController < ApplicationController
 
   def update
     @product = current_user.products.find_by(id: params[:id])
-    if @product.update(product_params)
-      flash[:notice] = "Successfully updated product!"
-      redirect_to @product
-    else
+    unless @product.update(product_params)
       flash[:alert] = @product.errors.full_messages
       render :edit
     end
+    flash[:notice] = "Successfully updated product!"
+    redirect_to @product
   end
 
   def show
-    # @product = current_user.products.find_by(id: params[:id])
     @product = Product.find_by(id: params[:id])
   end
 
   def destroy
     product = current_user.products.find_by(id: params[:id])
-    if product.destroy
-      flash[:notice] = "Successfully deleted product!"
-      redirect_to products_path
-    else
-      flash[:alert] = "Failed to delete product!"
-      redirect_to product
+    unless product && product.destroy
+      flash[:alert] = "You can only delete products that YOU create!"
+      @product = Product.find_by(id: params[:id])
+      render :show
     end
+    flash[:notice] = "Successfully deleted product!"
+    redirect_to products_path
   end
 
   private
