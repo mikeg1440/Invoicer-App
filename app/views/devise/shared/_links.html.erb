@@ -19,7 +19,8 @@
 <% end %>
 
 <%- if devise_mapping.omniauthable? %>
+  <span class="border border-primary bg-info text-center m-2">Or Login with Github</span>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'icon-github button5' %><br />
   <% end %>
 <% end %>
