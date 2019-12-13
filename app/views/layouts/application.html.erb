@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'true' %>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   </head>
 
@@ -17,16 +18,24 @@
 
   <body>
 
-    <div class="container p-5">
+    <div class="container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key == 'alert' ? "danger" : "primary" %>"><%= value.class == Array ? value.first : value %></div>
       <% end %>
 
 
       <div class="invoice">
+        <% unless request.path == "/" %>
+          <a class='btn btn-primary m-2' href="javascript:history.back()">Back</a>
+        <% end %>
+
         <%= yield %>
       </div>
     </div>
 
   </body>
+
+  <footer>
+    &nbsp;
+  </footer>
 </html>
