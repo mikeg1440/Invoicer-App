@@ -14,6 +14,7 @@
       </div>
 
       <div class="col">
+        <%= link_to "New Invoice", new_account_invoice_path(@account), class: 'btn btn-primary' %>
         <%= link_to "Edit Account", edit_account_path(@account), class: 'btn btn-warning' %>
         <%= button_to "Delete Account", @account, method: :delete, class: 'btn btn-danger' %>
       </div>
