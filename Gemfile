@@ -33,10 +33,16 @@ gem 'bcrypt', '~> 3.1.7'
 # gem for github omniauth
 gem 'omniauth-github'
 
+# sendgrid gem for advanced features sending email and text
+gem 'sendgrid-ruby'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 # assists creating nested forms
 # gem 'nested_form_fields'
+
+# gem for easy time differnce calculations
+gem 'time_difference'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
