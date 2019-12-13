@@ -7,14 +7,8 @@ class Client < ApplicationRecord
 
 
   def self.find_or_build_by(params, user)
-
-    require 'pry-moves';binding.pry
     client = self.find_by(email: params[:email])
-    if client
-      client
-    else
-      user.clients.build(params)
-    end
+    !!client ? client : user.clients.build(params)
   end
 
   def client_info
