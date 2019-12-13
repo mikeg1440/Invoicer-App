@@ -11,17 +11,25 @@
 
   <% @products.each do |product| %>
 
-    <div class="row p-1">
-      <div class="col-4">
+    <div class="row p-1 mt-3">
+      <div class="col-1">
       </div>
 
-      <div class="col-4">
-        <%= link_to product.name, product, class: 'card p-2 text-white bg-info mb-3 d-sm-inline-flex' %>
-      </div>
+      <div class="col flex">
 
-      <div class="col">
+        <div class="row p-1">
+          <div class="col-4">
+            <%= link_to product.name, product, class: 'card p-2 text-white bg-info mb-3 d-sm-inline-flex' %>
+          </div>
+          <div class="col flex">
+            <%= product.description %>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
+    <hr class="border-info col-11 m-auto" />
   <% end %>
 </div>
