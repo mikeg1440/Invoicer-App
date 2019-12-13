@@ -1,0 +1,12 @@
+<div class="alert alert-info">
+  Welcome to Invoicer App!
+  To produce a invoice you must first
+  <ol>
+    <li>create some <%= link_to "products", new_product_path %></li>
+    <li>Create a <%= link_to "clients", new_client_path %> to assign to an account</li>
+    <li>Finally assign a client to an <%= link_to "account", new_account_path %></li>
+  </ol>
+  Then you may start generating <%= link_to "new invoices", new_invoice_path %> that can then be sent to the client via email.
+  Clients then may choose to either <span class="text-primary">accept</span> or <span class="text-danger">reject</span> the invoice and
+  the response will show in your <%= link_to "invoices page", invoices_path %>.
+</div>
