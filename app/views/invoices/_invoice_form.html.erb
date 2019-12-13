@@ -33,11 +33,11 @@
 
     <div class="col">
       <div class="field">
-        <h5>Date Created: <%= f.date_field  :created_at, value: Time.now.strftime('%Y-%m-%d')  %></h5>
+        <h5>Date Created: <%= f.date_field  :created_at, value: Time.now.strftime('%Y-%m-%d'), class: 'form-control date-select'  %></h5>
       </div>
       <br>
         <div class="field">
-          <h5>Date Due: <%= f.date_field :due_time, value: (Time.now+7*86400).strftime('%Y-%m-%d') %> </h5>
+          <h5>Date Due: <%= f.date_field :due_time, value: (Time.now+7*86400).strftime('%Y-%m-%d'), class: 'form-control date-select' %> </h5>
         </div>
     </div>
   </div>
