@@ -1,0 +1,15 @@
+
+<% if @invoice %>
+  <div class="row card">
+
+    <div class="card-header text-center">
+      <h1><%= @invoice.status.capitalize %> Invoice</h1>
+    </div>
+
+    <div class="card-content p-4">
+      <%= render partial: 'invoices/show_invoice', locals: {invoice: @invoice} %>
+    </div>
+
+  </div>
+
+<% end %>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <h1>Hi <%= @invoice.account.client.name if @account %>, you have been sent a invoice from Invoicer App!</h1>
+    <div class="invoice">
+
+      <% if @invoice %>
+        <%= render partial: 'invoices/show_invoice', locals: {invoice: @invoice} %>
+
+        <a class="btn btn-primary" href="http://localhost:3000/invoices/accept/<%= @invoice.id %>">Accept</a>
+        <a class="btn btn-primary" href="http://localhost:3000/invoices/decline/<%= @invoice.id %>">Decline</a>
+      <% else %>
+        <h4>Invoice does not exist!</h4>
+      <% end %>
+
+
+    </div>
+  </body>
+</html>
