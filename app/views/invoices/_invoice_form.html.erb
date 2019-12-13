@@ -26,7 +26,7 @@
         <%= f.select(:account_id, Client.all.collect {|c| [c.name, c.id]}, {prompt: "Select", selected: params[:account_id], disable: true}) %>
       <% else %>
         <div class="field">
-          <%= f.select(:account_id, current_user.clients.collect {|c| [c.name, c.id]}, prompt: "Select") %>
+          <%= f.select(:account_id, current_user.accounts.collect {|a| [a.client.name, a.id]}, prompt: "Select Account") %>
         </div>
       <% end %>
     </div>
@@ -125,6 +125,17 @@
     return true;
   }
 
+  var deleteBtns = document.getElementsByClassName("remove-field");
+
+  for (var i=0; i<deleteBtns.length; i++){
+    deleteBtns[i].addEventListener('click', function(e){
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      var elem = e.target;
+      var row = elem.parentNode.parentNode;
+      deleteRow(row);
+    });
+  }
   $(".remove-field").on('click', function(e){
     event.stopPropagation();
     event.stopImmediatePropagation();
@@ -141,11 +152,14 @@
     function nameFields(){
       let selects = tBody.getElementsByTagName('select');
       for (var i=0;i < selects.length; i++){
-        selects[i].name = "invoice[invoice_products_attributes][" +i+ "][product_id]";
-        selects[i].id = "invoice[invoice_products_attributes][" +i+ "][product_id]";
-        selects[i].parentElement.previousSibling.previousSibling.append(i+1);
-        selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.name = "invoice[invoice_products_attributes]["+i+"][quantity]";
-        selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.id = "invoice[invoice_products_attributes]["+i+"][quantity]";
+        // selects[i].name = "invoice[invoice_products_attributes][" +i+ "][product_id]";
+        selects[i].name = `invoice[invoice_products_attributes][${i}][product_id]`;
+        selects[i].id = `invoice[invoice_products_attributes][${i}][product_id]`;
+        selects[i].parentElement.previousSibling.previousSibling.innerHTML = (i+1);
+        // selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.name = "invoice[invoice_products_attributes]["+i+"][quantity]";
+        selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.name = `invoice[invoice_products_attributes][${i}][quantity]`;
+        // selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.id = "invoice[invoice_products_attributes]["+i+"][quantity]";
+        selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.id = `invoice[invoice_products_attributes][${i}][quantity]`;
       }
     }
 
