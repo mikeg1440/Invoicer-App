@@ -15,7 +15,6 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    binding.pry
     @invoice = current_user.invoices.build(invoice_params)
     if @invoice.save
       @invoice.calculate_product_totals
@@ -29,7 +28,6 @@ class InvoicesController < ApplicationController
 
   def show
     @invoice = current_user.invoices.find_by(id: params[:id])
-    binding.pry
   end
 
   def edit
