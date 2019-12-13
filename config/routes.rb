@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'application#welcome'
   # resources :clients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-  resources :accounts, only: [:show, :new, :edit] do
+  resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :invoices, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
 
@@ -15,8 +15,7 @@ Rails.application.routes.draw do
   get '/invoices/accept/:id', to: 'invoices#accept', as: 'accept_invoice'
   get '/invoices/decline/:id', to: 'invoices#decline', as: 'decline_invoice'
   get '/send_invoice/:id', to: 'invoice_mailer#send_invoice', as: 'send_invoice'
-
-  resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  # resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   delete '/accounts/:id', to: 'accounts#destroy'
   resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
