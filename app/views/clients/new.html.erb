@@ -6,12 +6,12 @@
   <%= form_for @client do |f| %>
     <%= render partial: 'form', locals: {f: f} %>
 
-    <%= fields_for :account, @client.accounts.build do |ff| %>
+    <%= fields_for :account do |ff| %>
 
       <div class="field p-5">
         <h4>Create new account</h4>
-        <%= f.label :name, "Account Name:" %>
-        <%= f.text_field :name, placeholder: 'Name', class: 'form-control', class: 'form-control col-6' %>
+        <%= ff.label :name, "Account Name:" %>
+        <%= ff.text_field :name, placeholder: 'Name', class: 'form-control', class: 'form-control col-6' %>
       </div>
 
     <% end %>
