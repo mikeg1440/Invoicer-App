@@ -1,3 +1,13 @@
+<div class="row">
+
+  <div class="col">
+    <%= link_to "Edit", edit_invoice_path(@invoice), class: 'btn btn-primary' %>
+  </div>
+
+  <div class="col">
+    <%= link_to "Delete", destroy_invoice_path(@invoice), class: 'btn btn-danger' %>
+  </div>
+</div>
 
 <div class="row">
 
@@ -29,9 +39,9 @@
   </div>
 
   <div class="col">
-    <h5>Date Created: <%= @invoice.created_at %></h5>
+    <h5>Date Created: <%= @invoice.created_at.strftime("%Y-%m-%d") %></h5>
     <br>
-    <h5>Date Due:  <%= @invoice.due_time %></h5>
+    <h5>Date Due:  <%= @invoice.due_time.strftime("%Y-%m-%d") %></h5>
   </div>
 </div>
 
