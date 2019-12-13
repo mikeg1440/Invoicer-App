@@ -2,14 +2,20 @@
 
 <h1 class="text-center">Create new Invoice</h1>
 
-<% if current_user.clients.count < 1 %>
+<% if Client.all.count < 1 %>
 
   <div class="alert alert-danger">
     You have no clients to select yet! <br>
     Please <%= link_to "create a client", new_client_path %> before creating a invoice!
   </div>
 
-<% elsif current_user.products.empty? %>
+<% elsif current_user.accounts.count < 1 %>
+  <div class="alert alert-danger">
+    You have no accounts to choose from! <br>
+    Please <%= link_to "create a account", new_account_path %> with a client before creating a invoice!
+  </div>
+
+<% elsif Product.all.count < 1 %>
 
   <div class="alert alert-danger">
     You have no products to add to a invoice yet!
