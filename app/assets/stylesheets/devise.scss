@@ -1,0 +1,39 @@
+
+
+@media screen and (min-width: 768px)
+{
+  .modal-content {
+      -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .modal-content {
+      position: relative;
+      background-color: #ffffff;
+      border: 1px solid #999999;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      outline: none;
+      -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+      background-clip: padding-box;
+  }
+  *, *:before, *:after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  .icon-github {
+  display: block;
+  width: 65px;
+  height: 65px;
+  color: transparent;
+  background: url(https://cdn.jsdelivr.net/npm/simple-icons@1.20.0/icons/github.svg);
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  }
+  .icon-github:hover {
+    color: transparent;
+  }
+}
