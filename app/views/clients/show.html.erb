@@ -1,12 +1,20 @@
 
 
-<div class="card d-flex flex-row bd-highlight p-4">
-  <div class="col-md-8">
-    <%= render @client %>
+<% if @client %>
 
+  <div class="card d-flex flex-row bd-highlight p-4">
+    <div class="col-md-8">
+      <%= render @client %>
+
+    </div>
+    <div class="col-md-4">
+      <%= link_to "Edit Client", edit_client_path, class: 'btn btn-warning' %>
+      <%= link_to "Delete Client", client_path(@client), method: :delete, class: 'btn btn-danger'  %>
+    </div>
   </div>
-  <div class="col-md-4">
-    <%= link_to "Edit Client", edit_client_path, class: 'btn btn-warning' %>
-    <%= link_to "Delete Client", client_path(@client), method: :delete, class: 'btn btn-danger'  %>
-  </div>
-</div>
+
+<% else %>
+
+  <h1>Failed to find invoice with id <%= params[:id] %></h1>
+
+<% end %>
