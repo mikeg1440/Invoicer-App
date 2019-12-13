@@ -39,7 +39,6 @@ User.all.each do |user|
       product = Product.create(name: Faker::Commerce.product_name, price: Faker::Commerce.price, description: Faker::Lorem.sentence(word_count: 13))
       product.user = user
       product.save
-      binding.pry
     end
 
 end
@@ -51,7 +50,6 @@ Invoice.all.each do |invoice|
   3.times do
     invoice_product = invoice.invoice_products.new
     invoice_product.product = Product.all.sample
-    binding.pry
     invoice_product.quantity = rand(10)
     invoice_product.total = invoice_product.quantity * invoice_product.product.price
     invoice.save
