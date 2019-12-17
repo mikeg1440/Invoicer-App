@@ -1,8 +1,11 @@
 
 
-<h1>Create New Account</h1>
+<h1 class="text-center">Create New Account</h1>
 
-<h4 class="float-right">Current Account Holder: <%= current_user.username %></h4>
-
+<div class="col">
+  <h4 class="float-right d-inline">Current Account Holder: </h4>
+  <br><br>
+  <h2 class="float-right d-inline"><%= current_user.username %></h2>
+</div>
 
 <%= render partial: 'form', locals: {account: @account} %>
