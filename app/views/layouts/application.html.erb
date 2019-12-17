@@ -26,7 +26,7 @@
 
       <div class="invoice">
         <% unless request.path == "/" %>
-          <a class='btn btn-primary m-2' href="javascript:history.back()">Back</a>
+          <%= link_to "BACK", :back, class: 'btn btn-info' %>
         <% end %>
 
         <%= yield %>
