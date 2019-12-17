@@ -27,5 +27,6 @@ class Invoice < ApplicationRecord
     self.invoice_products.each do |line|
       line.total = line.product.price * line.quantity
     end
+    self.save
   end
 end
