@@ -9,25 +9,17 @@
       <th class="text-center" colspan="6">Controls</th>
     </tr>
 
-    <% if invoices %>
+    <% if invoices && invoices.count > 1 %>
 
       <% invoices.each do |invoice| %>
 
-        <tr>
-          <td colspan="1"><%= invoice.id %></td>
-          <td colspan="4"><%= invoice.account.client.name %></td>
-          <td colspan="3"><%= invoice.status %></td>
-          <td colspan="3"><%= invoice.grand_total %></td>
-          <td colspan="3"><%= invoice.due_time.strftime("%Y-%m-%d") %></td>
-          <td colspan="3"><%= link_to "Edit", edit_invoice_path(invoice), class: 'btn btn-info' %></td>
-          <td> <%= button_to "Delete", invoice, method: :delete, class: 'btn btn-danger' %></td>
-          <td><%= link_to "View", invoice, class: 'btn btn-primary' %></td>
-          <% unless ['accepted', 'declined','sent'].include?(invoice.status) %>
-            <td><%= link_to "Send", send_invoice_path(invoice), class: 'btn btn-success' %></td>
-          <% end %>
-        </tr>
+        <%= render partial: 'invoice_product_row', locals: {invoice: invoice} %>
 
       <% end %>
+
+    <% elsif invoices.count == 1 %>
+
+      <%= render partial: 'invoice_product_row', locals: {invoice: invoice} %>
 
     <% else %>
       <h2>No Clients to Display!</h2>
