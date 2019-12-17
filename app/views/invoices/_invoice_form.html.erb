@@ -59,11 +59,11 @@
 
         <tbody id="table-body" class="fields" >
 
-          <%= f.fields_for :invoice_products do |ff| %>
-            <%= render partial: 'field', locals: {ff: ff } %>
+          <% @invoice.invoice_products.each do |product| %>
+            <%= f.fields_for :invoice_products,product do |ff| %>
+              <%= render partial: 'field', locals: {ff: ff} %>
+            <% end %>
           <% end %>
-
-
         </tbody>
 
       </table>

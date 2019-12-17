@@ -5,7 +5,8 @@
 
   <div class="field">
   </div>
-  <td><%= ff.select :product_id, options_from_collection_for_select(Product.all, :id, :name), include_blank: 'Select a product' %></td>
+  <td><%= ff.collection_select :product_id, Product.all, :id, :name, include_blank: 'Select a product' %></td>
+  <!-- <td><%#<%= ff.select :product_id, options_from_collection_for_select(Product.all, :id, :name), include_blank: 'Select a product' %></td> -->
 
 
   <div class="field">
