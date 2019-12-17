@@ -24,7 +24,7 @@ class ClientsController < ApplicationController
 
     unless @client.valid?
       flash[:alert] = client.errors.full_messages
-      render :new
+      render :new and return
     end
     @client.save
     flash[:notice] = "Client successfully created!"

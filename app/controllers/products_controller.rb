@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     @product = current_user.products.find_by(id: params[:id])
     unless @product.update(product_params)
       flash[:alert] = @product.errors.full_messages
-      render :edit
+      render :edit and return
     end
     flash[:notice] = "Successfully updated product!"
     redirect_to @product
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
     unless product && product.destroy
       flash[:alert] = "You can only delete products that YOU create!"
       @product = Product.find_by(id: params[:id])
-      render :show
+      render :show and return
     end
     flash[:notice] = "Successfully deleted product!"
     redirect_to products_path
