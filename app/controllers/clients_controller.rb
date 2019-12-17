@@ -25,10 +25,10 @@ class ClientsController < ApplicationController
     unless @client.valid?
       flash[:alert] = client.errors.full_messages
       render :new
+    end
     @client.save
     flash[:notice] = "Client successfully created!"
     redirect_to client_path(@client)
-    end
   end
 
   def edit
