@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<div class="row p-2">
+<div class="row">
 
   <div class="col m-4">
     <h4>Bill To</h4>
@@ -63,15 +63,14 @@
       </thead>
       <tbody>
         <% @invoice.invoice_products.each do |invoice_product| %>
-        <tr>
-          <th scope="row" colspan="1"><%= invoice_product.product.id %></th>
-          <td><%= invoice_product.product.name %></td>
-          <td colspan="2"><%= invoice_product.product.description %></td>
-          <td><%= invoice_product.quantity %></td>
-          <td>$<%= invoice_product.product.price %></td>
-          <td>$<%= invoice_product.total %><td>
-        </tr>
-
+          <tr>
+            <th scope="row" colspan="1"><%= invoice_product.product.id %></th>
+            <td><%= invoice_product.product.name %></td>
+            <td colspan="2"><%= invoice_product.product.description %></td>
+            <td><%= invoice_product.quantity %></td>
+            <td>$<%= invoice_product.product.price %></td>
+            <td>$<%= invoice_product.total %><td>
+          </tr>
 
         <% end %>
 
