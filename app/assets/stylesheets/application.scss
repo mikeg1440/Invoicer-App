@@ -26,7 +26,7 @@ body{
   height: 100%;
 }
 header{
-  margin-bottom: 135px;
+  margin-bottom: 105px;
 }
 footer{
   margin-top: 125px;
@@ -35,6 +35,9 @@ footer{
   text-align: center;
 }
 
+.required {
+  color: red;
+}
 .field{
   padding: 2px;
 }
