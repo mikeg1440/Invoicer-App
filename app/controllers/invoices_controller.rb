@@ -63,6 +63,11 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def unsent
+    @invoices = current_user.invoices.where(status: 'unsent')
+    binding.pry
+  end
+
   def accept
     @invoice = Invoice.find_by(id: params[:id])
     if @invoice
