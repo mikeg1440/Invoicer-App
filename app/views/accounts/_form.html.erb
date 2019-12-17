@@ -6,12 +6,16 @@
     <button type="button" id="showClients" onclick="showClients" hidden>Show Clients</button>
   </div>
 
+  <h3 class="text-danger text-center">OR</h3>
+
+  <%= link_to "Reset", "#", id: "reset-btn" %>
+
   <div class="card mt-4">
 
     <div class="row">
       <div class="col m-4">
 
-        <h5>Create New Client</h5>
+      <h5>Create New Client</h5>
         <%= f.fields_for :client, current_user.clients.build do |ff| %>
 
           <%= render partial: 'clients/form', locals: {f: ff} %>
@@ -39,24 +43,49 @@
 
 <script type="text/javascript">
 
-  var clientSelect = document.getElementById("client-select");
+  let clientSelect = document.getElementById("client-select")
 
-  clientSelector = document.getElementById("client-selector");
-  newForm = document.getElementsByClassName("card")[0];
-  // showClientBtn = document.getElementById("showClients");
+  let clientSelector = document.getElementById("client-selector")
+  let newForm = document.getElementsByClassName("card")[0]
+  let resetBtn = document.getElementById("reset-btn")
+  resetBtn.style.display = "none"
+
+  resetBtn.addEventListener('click', function(e){
+    e.preventDefault()
+    showAll()
+  })
 
   clientSelector.addEventListener('change', function(){
-    newForm.hidden = true;
-  });
+    hideAccountForm()
+  })
 
   newForm.addEventListener('change', function(){
-    clientSelector.hidden = true;
-    clientSelect.hidden = true;
-    // showClientBtn.hidden = false;
-  });
+    clientSelector.selectedIndex = 0
+    hideClients()
+  })
 
-  if (clientSelector.selectedIndex != 0){
-    newForm.hidden = true;
+  if (!!window.location.pathname.match(/new/)){
+    if (clientSelector.selectedIndex != 0){
+      newForm.style.display = "none"
+    }
+  }
+
+  function hideAccountForm(){
+    var inputs = newForm.querySelectorAll("input")
+    inputs.forEach(function(i){ i.value = "" })
+    newForm.style.display = "none"
+    resetBtn.style.display = "block"
+  }
+
+  function hideClients(){
+    clientSelector.selectedIndex = 0
+    clientSelector.style.display = "none"
+    resetBtn.style.display = "block"
+  }
+
+  function showAll(){
+    newForm.style.display = "block"
+    clientSelector.style.display = "block"
   }
 
 </script>
