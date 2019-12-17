@@ -1,15 +1,17 @@
-<div class="row">
+  <div class="row">
 
   <div class="col">
     <%= link_to "Edit", edit_invoice_path(@invoice), class: 'btn btn-primary' %>
+    <%= link_to "Send", send_invoice_path(@invoice), class: 'btn btn-primary' %>
   </div>
 
   <div class="col">
-    <%= link_to "Delete", destroy_invoice_path(@invoice), class: 'btn btn-danger' %>
+    <%# <%= link_to "Delete", destroy_invoice_path(@invoice), class: 'btn btn-danger' %>
+    <%= image_tag "logo.png", class: 'float-right' %>
   </div>
 </div>
 
-<div class="row">
+<div class="row p-2">
 
   <div class="col">
     <h4>Users Business Name</h4>
@@ -23,8 +25,9 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
+<div class="row p-2">
+
+  <div class="col m-4">
     <h4>Bill To</h4>
     <p>
       <%= @invoice.account.client.name %>
@@ -51,6 +54,7 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Product</th>
           <th scope="col" colspan="2">Description</th>
           <th scope="col">Quantity</th>
           <th scope="col">Rate</th>
@@ -59,9 +63,9 @@
       </thead>
       <tbody>
         <% @invoice.invoice_products.each do |invoice_product| %>
-
         <tr>
           <th scope="row" colspan="1"><%= invoice_product.product.id %></th>
+          <td><%= invoice_product.product.name %></td>
           <td colspan="2"><%= invoice_product.product.description %></td>
           <td><%= invoice_product.quantity %></td>
           <td>$<%= invoice_product.product.price %></td>
@@ -78,13 +82,13 @@
   </div>
 </div>
 
-<div class="row border border-dark">
+<div class="row bg-info text-white pt-2 pb-">
 
-  <div class="col">
+  <div class="col-7">
 
   </div>
 
-  <div class="col">
+  <div class="col-5">
     <div class="row">
       <div class="col">
         Sub Total:
