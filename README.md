@@ -64,6 +64,14 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
+ 
+## Project Todo List
+
+ - Fix dropdown menu for small screen (most likely a js script missing)
+ - Fix delete row button for new invoice view (js agian)
+ - Only allow users to create accounts
+
+
 ## Running the tests
 
 Explain how to run the automated tests for this system
