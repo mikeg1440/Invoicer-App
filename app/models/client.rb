@@ -2,7 +2,7 @@ class Client < ApplicationRecord
   has_many :accounts
   has_many :invoices, through: :accounts
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :business_name, uniqueness: true
 
