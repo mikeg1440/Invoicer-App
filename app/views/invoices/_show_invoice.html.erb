@@ -1,9 +1,15 @@
   <div class="row">
 
   <div class="col">
-    <%= link_to "Edit", edit_invoice_path(@invoice), class: 'btn btn-primary' %>
-    <%= link_to "Send", send_invoice_path(@invoice), class: 'btn btn-primary' %>
+    <%= link_to "Send", send_invoice_url(id: @invoice, only_path: true), class: 'btn btn-primary' %>
   </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <h1 class="bg-info pr-5 pl-5 text-white">Invoice for <%= @invoice.account.client.business_name %></h1>
+    </div>
+  </div>
+
 
   <div class="col">
     <%# <%= link_to "Delete", destroy_invoice_path(@invoice), class: 'btn btn-danger' %>
@@ -11,7 +17,8 @@
   </div>
 </div>
 
-<div class="row p-2">
+
+<div class="row p-2 border-right border-left border-top border-dark">
 
   <div class="col">
     <h4>Users Business Name</h4>
@@ -25,12 +32,13 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row border-left border-right border-dark">
 
   <div class="col m-4">
     <h4>Bill To</h4>
     <p>
       <%= @invoice.account.client.name %>
+      <br>
       <%= @invoice.account.client.business_name %>
       <address class="">
         <%= @invoice.account.client.address %>
@@ -80,6 +88,8 @@
 
   </div>
 </div>
+
+<br>
 
 <div class="row bg-info text-white pt-2 pb-">
 
