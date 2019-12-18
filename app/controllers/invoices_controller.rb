@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!, except: [:accept, :decline]
+  before_action :find_invoice, only: [:show, :edit, :update, :destroy]
 
   def index
     if !!params[:account_id]
@@ -27,16 +28,17 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    @invoice = current_user.invoices.find_by(id: params[:id])
+    # @invoice = current_user.invoices.find_by(id: params[:id])
+    binding.pry
   end
 
   def edit
-    @invoice = current_user.invoices.find_by(id: params[:id])
+    # @invoice = current_user.invoices.find_by(id: params[:id])
     @invoice.invoice_products.build
   end
 
   def update
-    @invoice = current_user.invoices.find_by(id: params[:id])
+    # @invoice = current_user.invoices.find_by(id: params[:id])
     if @invoice.update(invoice_params)
       flash[:notice] = "Updated invoice successfully!"
       redirect_to account_invoice_path(@invoice)
@@ -47,7 +49,7 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    invoice = current_user.invoices.find_by(id: params[:id])
+    # invoice = current_user.invoices.find_by(id: params[:id])
     if invoice.destroy
       flash[:notice] = "Invoice deleted successfully!"
       redirect_to invoices_path
@@ -97,5 +99,11 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:account_id, :created_at, :due_time, invoice_products_attributes: [:product_id, :quantity, :_destroy])
+  end
+
+  def find_invoice
+    binding.pry
+    @invoice = current_user.invoices.find_by(id: params[:id])
+    @invoice
   end
 end

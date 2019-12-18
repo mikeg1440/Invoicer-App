@@ -4,9 +4,9 @@
   <td colspan="3"><%= invoice.status %></td>
   <td colspan="3"><%= invoice.grand_total %></td>
   <td colspan="3"><%= invoice.due_time.strftime("%Y-%m-%d") %></td>
-  <td colspan="3"><%= link_to "Edit", edit_invoices_path(invoice), class: 'btn btn-info' %></td>
-  <td> <%= button_to "Delete", invoices_path(invoice), method: :delete, class: 'btn btn-danger' %></td>
-  <td><%= link_to "View", invoices_path(invoice), class: 'btn btn-primary' %></td>
+  <td colspan="3"><%= link_to "Edit", edit_invoice_path(invoice), class: 'btn btn-info' %></td>
+  <td> <%= button_to "Delete", invoice_path(invoice), method: :delete, class: 'btn btn-danger' %></td>
+  <td><%= link_to "View", invoice_path(invoice), class: 'btn btn-primary' %></td>
   <% unless ['accepted', 'declined','sent'].include?(invoice.status) %>
     <td><%= link_to "Send", send_invoice_path(invoice), class: 'btn btn-success' %></td>
   <% end %>

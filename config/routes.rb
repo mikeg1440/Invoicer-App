@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :invoices, only: [:index, :new, :create, :show]
   end
 
-  resource :invoices, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :invoices, only: [:edit, :update, :destroy]
 
   get '/test', to: 'clients#test'
   post '/test', to: 'clients#test'
