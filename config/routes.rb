@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get '/invoices/unsent', to: 'invoices#unsent', as: 'unsent_invoices'
 
   resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :invoices, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :invoices, only: [:index, :new, :create]
   end
+
+  resource :invoices, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   get '/test', to: 'clients#test'
   post '/test', to: 'clients#test'
@@ -24,7 +26,11 @@ Rails.application.routes.draw do
 
 
   scope :users do
-    resources :invoices, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    # resources :invoices, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    get '/invoices', to: 'invoices#index', as: 'user_invoices'
+    get '/invoices/new', to: 'invoices#new', as: 'new_invoice'
+    # post '/invoices', to: 'invoices#create', as: 'invoices'
+
     resources :clients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
   devise_for :users, controllers: { omniauth_callbacks: 'callbacks'}, path_names: { sign_in: 'login', sign_out: 'logout'}
