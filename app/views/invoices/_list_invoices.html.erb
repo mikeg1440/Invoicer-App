@@ -19,7 +19,7 @@
 
     <% elsif invoices.count == 1 %>
 
-      <%= render partial: 'invoice_row', locals: {invoice: invoice} %>
+      <%= render partial: 'invoice_row', locals: {invoice: invoices.first} %>
 
     <% else %>
       <h2>No Clients to Display!</h2>
