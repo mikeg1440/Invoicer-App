@@ -2,6 +2,191 @@
 
 <div class="invoice mt-5">
 
-  <%= render partial: 'invoice_form', locals: {invoice: @invoice} %>
+  <%# <%= render partial: 'invoice_form', locals: {invoice: @invoice} %>
+
+  <%= form_for @invoice, url: {controller: 'invoices', action: 'update', id: @invoice  } do |f| %>
+    <% hidden_field_tag(:invoice, :id) %>
+    <div class="row">
+
+      <div class="col">
+        <h4>Users Business Name</h4>
+        <address class="">
+          1 Address Here City, State 00000 (user address)
+        </address>
+      </div>
+
+      <div class="col">
+        <span class="inline-headers">
+          <h2>Invoice ID: <%= @invoice.id || Invoice.all.count+1 %>  </h2>
+        </span>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h4>Bill To Account</h4>
+
+        <% if !!params[:account_id] %>
+          <%= f.collection_select(:account_id, current_user.accounts, :id, :name, {}, {class: 'form-control custom-input'}) %>
+        <% else %>
+          <div class="field">
+            <%= f.select(:account_id, current_user.accounts.collect {|a| [a.name, a.id]}, prompt: "Select Account", class: 'form-control custom-input') %>
+          </div>
+        <% end %>
+
+        <br>
+        <%= link_to "Create New Account", new_account_path %>
+      </div>
+
+      <div class="col">
+        <div class="field">
+          <h5>Date Created: <%= f.date_field  :created_at, value: Time.now.strftime('%Y-%m-%d'), class: 'form-control date-select'  %></h5>
+        </div>
+        <br>
+          <div class="field">
+            <h5>Date Due: <%= f.date_field :due_time, value: (Time.now+7*86400).strftime('%Y-%m-%d'), class: 'form-control date-select' %> </h5>
+          </div>
+      </div>
+    </div>
+
+    <div class="row border border-dark bg-dark">
+      <div class="col">
+        <table class="table table-dark">
+          <thead class="text-center">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col" >Product</th>
+              <th scope="col">Quantity</th>
+              <th scope="col" >Total</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+
+          <tbody id="table-body" class="fields" >
+
+            <% @invoice.invoice_products.each do |product| %>
+              <%= f.fields_for :invoice_products,product do |ff| %>
+                <%= render partial: 'field', locals: {ff: ff} %>
+              <% end %>
+            <% end %>
+          </tbody>
+
+        </table>
+
+      </div>
+    </div>
+
+    <div class="row border border-dark p-2">
+      <%= link_to "Add Product", add_field_path(format: :js), {method: :post, remote: true, id: "addProductBtn", class: 'btn btn-primary'} %>
+
+      <div class="col">
+
+      </div>
+
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            Sub Total:
+          </div>
+          <div class="col">
+            <!--  we need to fix the precision on the totals at some point -->
+            $ <%= @invoice.amount_due %>
+          </div>
+        </div>
+
+        <div class="row font-weight-bold">
+          <div class="col">
+            Grand Total Due:
+          </div>
+          <div class="col">
+            <!--  we need to fix the precision on the totals at some point -->
+            $ <%= @invoice.grand_total unless request.url.match('/invoices/new')%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row action">
+      <div class="col-10">
+      </div>
+
+      <div class="float-right col-2">
+        <%= f.submit "Update Invoice", class: 'btn btn-primary' %>
+      </div>
+
+    </div>
+
+
+  <% end %>
+
+
+  <script type="text/javascript">
+
+    function showTotal(e){
+      alert('workin');
+    }
+
+    function deleteRow(row){
+      row.parentNode.deleteRow(row.rowIndex-1);
+      return true;
+    }
+
+    var deleteBtns = document.getElementsByClassName("remove-field");
+
+    for (var i=0; i<deleteBtns.length; i++){
+      deleteBtns[i].addEventListener('click', function(e){
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        var elem = e.target;
+        var row = elem.parentNode.parentNode;
+        deleteRow(row);
+      });
+    }
+    $(".remove-field").on('click', function(e){
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      var elem = e.target;
+      var row = elem.parentNode.parentNode;
+      deleteRow(row);
+    });
+
+    document.addEventListener("DOMContentLoaded", function(){
+
+      let tBody = document.getElementById("table-body");
+      let addBtn = document.getElementById("addProductBtn");
+
+      function nameFields(){
+        let selects = tBody.getElementsByTagName('select');
+        for (var i=0;i < selects.length; i++){
+          // selects[i].name = "invoice[invoice_products_attributes][" +i+ "][product_id]";
+          selects[i].name = `invoice[invoice_products_attributes][${i}][product_id]`;
+          selects[i].id = `invoice[invoice_products_attributes][${i}][product_id]`;
+          selects[i].parentElement.previousSibling.previousSibling.innerHTML = (i+1);
+          // selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.name = "invoice[invoice_products_attributes]["+i+"][quantity]";
+          selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.name = `invoice[invoice_products_attributes][${i}][quantity]`;
+          // selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.id = "invoice[invoice_products_attributes]["+i+"][quantity]";
+          selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.id = `invoice[invoice_products_attributes][${i}][quantity]`;
+        }
+      }
+
+      function numberProducts(){
+        let selects = tBody.getElementsByTagName('select');
+        for (var i=0;i < selects.length; i++){
+          selects[i].parentElement.previousSibling.previousSibling.append(i+1);
+        }
+      }
+
+      addBtn.addEventListener('click', function(){
+        setTimeout(nameFields, 300);
+      })
+
+      numberProducts();
+    });
+
+
+  </script>
+
 
 </div>
