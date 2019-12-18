@@ -9,7 +9,7 @@ class InvoiceMailerController < ApplicationController
     @invoice.save
     if @invoice
       # simple_message(@invoice.account.client.email)
-      InvoiceMailer.send_invoice_to_client(@invoice.client.email, @invoice).deliver_now
+      InvoiceMailer.send_invoice_to_client(@invoice.account.client.email, @invoice).deliver_now
     else
       flash[:alert] = "Failed to find invoice to send"
       redirect_to invoices_path
