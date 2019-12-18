@@ -15,7 +15,6 @@ class AccountsController < ApplicationController
 
   def create
     @account = current_user.accounts.find_or_build_by(account_params, current_user)
-    binding.pry
     if @account.save
       flash[:notice] = "Account created successfully!"
       redirect_to account_path(@account)

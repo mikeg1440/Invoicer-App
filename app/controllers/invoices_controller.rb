@@ -19,7 +19,7 @@ class InvoicesController < ApplicationController
     if @invoice.save
       @invoice.calculate_product_totals
       flash[:notice] = "Invoice created successfully!"
-      redirect_to invoice_path(@invoice)
+      redirect_to account_invoice_path(@invoice.account, @invoice)
     else
       flash[:alert] = @invoice.errors.full_messages.uniq
       render :new
@@ -41,7 +41,7 @@ class InvoicesController < ApplicationController
       flash[:notice] = "Updated invoice successfully!"
       redirect_to account_invoice_path(@invoice)
     else
-      flash[:alert] = "Failed to update invoice!"
+      flash[:alert] = @invoice.errors.full_messages.uniq
       render :edit
     end
   end

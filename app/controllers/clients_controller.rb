@@ -23,7 +23,7 @@ class ClientsController < ApplicationController
     end
 
     unless @client.valid?
-      flash[:alert] = client.errors.full_messages
+      flash[:alert] = @client.errors.full_messages
       render :new and return
     end
     @client.save
