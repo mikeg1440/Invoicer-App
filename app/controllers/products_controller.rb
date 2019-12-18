@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     @product = current_user.products.build(product_params)
     unless @product.save
       flash[:alert] = @product.errors.full_messages
-      render :new
+      render :new and return
     end
     flash[:notice] = "Successfully created new product!"
     redirect_to @product
