@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/invoices/unsent', to: 'invoices#unsent', as: 'unsent_invoices'
 
   resources :accounts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :invoices, only: [:index, :new, :create]
+    resources :invoices, only: [:index, :new, :create, :show]
   end
 
   resource :invoices, only: [:index, :new, :create, :show, :edit, :update, :destroy]
