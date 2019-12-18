@@ -8,12 +8,16 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
+      # t.string :name,               null: false, default: ""
+      # t.string :business_name
+      # t.string :address
+
       ## For setting a admin till we get a time to implement roles
       t.boolean :admin,             null: false, default: false
 
       ## For designating a user account as a client
       t.boolean :is_client,          null: false, default: false
-      
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
