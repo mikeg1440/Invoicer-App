@@ -9,7 +9,7 @@
     <div class="navbar-nav">
       <% if user_signed_in? %>
         <%= link_to "Home", root_path, class: 'nav-item nav-link' %>
-        <%= link_to "My Invoices", user_invoices_path, class: 'nav-item nav-link' %>
+        <%= link_to "My Invoices", invoices_path, class: 'nav-item nav-link' %>
         <%= link_to "Accounts", accounts_path, class: 'nav-item nav-link' %>
         <%= link_to "Products", products_path, class: 'nav-item nav-link' %>
         <%# <%= link_to "Clients", clients_path, class: 'nav-item nav-link' %>
