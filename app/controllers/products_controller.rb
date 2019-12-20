@@ -22,11 +22,9 @@ class ProductsController < ApplicationController
 
 
   def edit
-    # @product = current_user.products.find_by(id: params[:id])
   end
 
   def update
-    # @product = current_user.products.find_by(id: params[:id])
     unless @product.update(product_params)
       flash[:alert] = @product.errors.full_messages
       render :edit and return
@@ -40,7 +38,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    # product = current_user.products.find_by(id: params[:id])
     unless @product && @product.destroy
       flash[:alert] = "You can only delete products that YOU create!"
       @product = Product.find_by(id: params[:id])
