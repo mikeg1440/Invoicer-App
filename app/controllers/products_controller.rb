@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_product, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -21,11 +22,11 @@ class ProductsController < ApplicationController
 
 
   def edit
-    @product = current_user.products.find_by(id: params[:id])
+    # @product = current_user.products.find_by(id: params[:id])
   end
 
   def update
-    @product = current_user.products.find_by(id: params[:id])
+    # @product = current_user.products.find_by(id: params[:id])
     unless @product.update(product_params)
       flash[:alert] = @product.errors.full_messages
       render :edit and return
@@ -39,8 +40,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    product = current_user.products.find_by(id: params[:id])
-    unless product && product.destroy
+    # product = current_user.products.find_by(id: params[:id])
+    unless @product && @product.destroy
       flash[:alert] = "You can only delete products that YOU create!"
       @product = Product.find_by(id: params[:id])
       render :show and return
@@ -49,9 +50,18 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def top_five
+    @products = Product.top_five
+  end
+
   private
 
   def product_params
     params.require(:product).permit(:name, :description, :price)
   end
+
+  def find_product
+    @product = current_user.products.find_by(id: params[:id])
+  end
+
 end
