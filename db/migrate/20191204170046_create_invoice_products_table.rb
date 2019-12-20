@@ -5,7 +5,6 @@ class CreateInvoiceProductsTable < ActiveRecord::Migration[6.0]
       t.integer :invoice_id
       t.integer :total
       t.integer :quantity
-      # t.index [:product_id, :invoice_id], unique: true
     end
   end
 end
