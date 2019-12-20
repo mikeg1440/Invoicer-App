@@ -8,8 +8,8 @@
 
     <%= fields_for :account do |ff| %>
 
-      <div class="field p-5">
-        <h4>Create new account span</h4>
+      <div class="field p-5 d-none">
+        <h4>Create new account</h4>
         <%= ff.label :name, "Account Name:" %>
         <%= ff.text_field :name, placeholder: 'Name', class: 'form-control', class: 'form-control col-6' %>
       </div>
