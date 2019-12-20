@@ -1,0 +1,29 @@
+
+<h1 class="text-center">Top Five Products</h1>
+
+<div class="card card-info">
+
+
+  <table class="table">
+  <tbody>
+  <tr>
+  <th scope="col">Product</th>
+  <th scope="col"># of times used</th>
+  </tr>
+
+
+  <% @products.each do |product| %>
+
+    <tr>
+    <td><%= link_to product[0].name, product[0], class: 'btn btn-primary' %></td>
+    <td>Used <%= product[1] %> times!</td>
+    </tr>
+
+  <% end %>
+
+  </tbody>
+  </table>
+
+
+
+</div>
