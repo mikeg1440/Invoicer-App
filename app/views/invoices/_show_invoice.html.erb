@@ -1,18 +1,20 @@
-  <div class="row">
+<div class="row mb-5">
 
   <div class="col">
     <%= link_to "Send", send_invoice_url(id: @invoice, only_path: true), class: 'btn btn-primary' %>
+    <%= link_to "Edit", edit_invoice_path(@invoice), class: 'btn btn-warning' %>
+    <%= link_to "Delete", invoice_path(@invoice), method: :delete, class: 'btn btn-danger float-right' %>
   </div>
 
-  <div class="row">
-    <div class="col text-center">
-      <h1 class="bg-info pr-5 pl-5 text-white">Invoice for <%= @invoice.account.client.business_name %></h1>
-    </div>
+</div>
+
+<div class="row">
+  <div class="col text-center">
+    <h1 class="bg-info pr-5 pl-5 text-white">Invoice for <%= @invoice.account.client.business_name %></h1>
   </div>
 
 
   <div class="col">
-    <%# <%= link_to "Delete", destroy_invoice_path(@invoice), class: 'btn btn-danger' %>
     <%= image_tag "logo.png", class: 'float-right' %>
   </div>
 </div>
