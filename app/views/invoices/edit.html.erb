@@ -2,8 +2,6 @@
 
 <div class="invoice mt-5">
 
-  <%# <%= render partial: 'invoice_form', locals: {invoice: @invoice} %>
-
   <%= form_for @invoice, url: {controller: 'invoices', action: 'update', id: @invoice  } do |f| %>
     <% hidden_field_tag(:invoice, :id) %>
     <div class="row">
@@ -124,9 +122,6 @@
 
   <script type="text/javascript">
 
-    function showTotal(e){
-      alert('workin');
-    }
 
     function deleteRow(row){
       row.parentNode.deleteRow(row.rowIndex-1);
@@ -137,16 +132,14 @@
 
     for (var i=0; i<deleteBtns.length; i++){
       deleteBtns[i].addEventListener('click', function(e){
-        event.stopPropagation();
-        event.stopImmediatePropagation();
+        e.preventDefault()
         var elem = e.target;
         var row = elem.parentNode.parentNode;
         deleteRow(row);
       });
     }
     $(".remove-field").on('click', function(e){
-      event.stopPropagation();
-      event.stopImmediatePropagation();
+      e.preventDefault()
       var elem = e.target;
       var row = elem.parentNode.parentNode;
       deleteRow(row);
@@ -164,9 +157,7 @@
           selects[i].name = `invoice[invoice_products_attributes][${i}][product_id]`;
           selects[i].id = `invoice[invoice_products_attributes][${i}][product_id]`;
           selects[i].parentElement.previousSibling.previousSibling.innerHTML = (i+1);
-          // selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.name = "invoice[invoice_products_attributes]["+i+"][quantity]";
           selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.name = `invoice[invoice_products_attributes][${i}][quantity]`;
-          // selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.id = "invoice[invoice_products_attributes]["+i+"][quantity]";
           selects[i].parentNode.nextSibling.nextElementSibling.firstElementChild.id = `invoice[invoice_products_attributes][${i}][quantity]`;
         }
       }
