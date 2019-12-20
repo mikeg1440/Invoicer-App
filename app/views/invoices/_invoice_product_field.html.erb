@@ -1,7 +1,7 @@
 
   <tr id="input-group">
-    <input type="hidden" value="false" name="invoice[invoice_products_attributes][0][_destroy]" id="invoice_invoice_products_attributes_0__destroy">
-    <th scope="row" id="product-num">1</th>
+
+    <th scope="row" id="product-num"></th>
 
     <td><%= select_tag :product_id, options_from_collection_for_select(Product.all, :id, :name), include_blank: 'Select a product'%></td>
 
@@ -12,6 +12,6 @@
     <td><input readonly size="2em" class="form-control text-center" type="text" name="invoice[invoice_products_attributes][0][total]" id="invoice_invoice_products_attributes_0_total"></td>
 
 
-    <td><a class="btn btn-danger float-right remove-field" href="#">Delete</a></td>
+    <td><a class="btn btn-danger float-right remove-field" href="">Delete</a></td>
 
   </tr>

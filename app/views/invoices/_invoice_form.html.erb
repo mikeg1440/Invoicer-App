@@ -62,7 +62,7 @@
 
           <% @invoice.invoice_products.each do |product| %>
             <%= f.fields_for :invoice_products,product do |ff| %>
-              <%= render partial: 'field', locals: {ff: ff} %>
+              <%= render partial: 'invoice_product_field', locals: {ff: ff} %>
             <% end %>
           <% end %>
         </tbody>
