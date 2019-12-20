@@ -1,10 +1,16 @@
 <h1 class="text-center">Products</h1>
 
+<strong class="text-warning">* Products you created will have a edit button next to them</strong>
+
 <div class="card p-4">
   <div class="card-header d-flex flex-row bd-highlight p-4">
 
-    <div class="pr-2">
+    <div class="pr-2 col-8">
       <%= button_to "Create New Product",new_product_path, method: 'get',class: 'btn btn-primary' %>
+    </div>
+
+    <div class="col-4">
+      <%= link_to "Show Five Most Used Products", top_five_products_path, class: 'btn btn-success' %>
     </div>
 
   </div>
@@ -20,6 +26,9 @@
         <div class="row p-1">
           <div class="col-4">
             <%= link_to product.name, product, class: 'card p-2 text-white bg-info mb-3 d-sm-inline-flex' %>
+
+            <%= link_to "Edit", edit_product_path(product), class: 'btn btn-warning' if current_user.products.include?(product) %>
+
           </div>
           <div class="col flex">
             <%= product.description %>
