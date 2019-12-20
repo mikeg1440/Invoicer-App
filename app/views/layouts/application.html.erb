@@ -26,7 +26,7 @@
 
       <div class="invoice">
         <% unless request.path == "/" %>
-          <%= link_to "BACK", :back, class: 'btn btn-info' %>
+          <a href="" class="btn btn-info" onclick="window.history.back();">Back</a>
         <% end %>
 
         <%= yield %>
