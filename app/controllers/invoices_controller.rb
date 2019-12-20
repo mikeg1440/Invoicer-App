@@ -39,7 +39,7 @@ class InvoicesController < ApplicationController
   def update
     if @invoice.update(invoice_params)
       flash[:notice] = "Updated invoice successfully!"
-
+      @invoice.calculate_product_totals
       redirect_to account_invoice_path(@invoice)
     else
       flash[:alert] = @invoice.errors.full_messages.uniq
@@ -48,7 +48,7 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    if invoice.destroy
+    if @invoice.destroy
       flash[:notice] = "Invoice deleted successfully!"
       redirect_to invoices_path
     else
