@@ -1,6 +1,8 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!, except: [:accept, :decline]
-  before_action :find_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :find_user_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :find_invoice, only: [:accept, :decline]
+
 
   def index
     if !!params[:account_id]
@@ -12,6 +14,7 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = current_user.invoices.build
+    @invoice.account_id = params[:account_id] if  !!params[:account_id]
     @invoice.invoice_products.build
   end
 
@@ -28,19 +31,15 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    # @invoice = current_user.invoices.find_by(id: params[:id])
-    binding.pry
   end
 
   def edit
-    # @invoice = current_user.invoices.find_by(id: params[:id])
-    @invoice.invoice_products.build
   end
 
   def update
-    # @invoice = current_user.invoices.find_by(id: params[:id])
     if @invoice.update(invoice_params)
       flash[:notice] = "Updated invoice successfully!"
+
       redirect_to account_invoice_path(@invoice)
     else
       flash[:alert] = @invoice.errors.full_messages.uniq
@@ -49,7 +48,6 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    # invoice = current_user.invoices.find_by(id: params[:id])
     if invoice.destroy
       flash[:notice] = "Invoice deleted successfully!"
       redirect_to invoices_path
@@ -67,11 +65,9 @@ class InvoicesController < ApplicationController
 
   def unsent
     @invoices = current_user.invoices.where(status: 'unsent')
-    binding.pry
   end
 
   def accept
-    @invoice = Invoice.find_by(id: params[:id])
     if @invoice
       flash[:notice] = "Thank you for accepting the invoice!  Payment instructions will be sent shortly."
       @invoice.status = "accepted"
@@ -84,7 +80,6 @@ class InvoicesController < ApplicationController
 
 
   def decline
-    @invoice = Invoice.find_by(id: params[:id])
     if @invoice
       flash[:notice] = "You have successfully declined the invoice, please fill the forms below so we can understand why."
       @invoice.status = "declined"
@@ -98,12 +93,14 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:account_id, :created_at, :due_time, invoice_products_attributes: [:product_id, :quantity, :_destroy])
+    params.require(:invoice).permit(:account_id, :created_at, :due_time, invoice_products_attributes: [:product_id, :quantity, :total, :_destroy])
   end
 
   def find_invoice
-    binding.pry
+    @invoice = Invoice.find_by(id: params[:id])
+  end
+
+  def find_user_invoice
     @invoice = current_user.invoices.find_by(id: params[:id])
-    @invoice
   end
 end
