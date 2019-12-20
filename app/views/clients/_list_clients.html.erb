@@ -2,7 +2,7 @@
 <% if clients %>
   <% clients.each do |client| %>
 
-    <%= link_to client.client_info, client, class: 'card p-2 text-white bg-info mb-3 d-sm-inline-flex' %>
+    <%= link_to client.client_info, client, class: 'card p-2 text-white bg-info mb-3 d-sm-inline-flex' %>  <%= (link_to "Edit", edit_client_path(client), class: 'btn btn-warning') if current_user.clients.include?(client) %>
 
     <br>
   <% end %>
