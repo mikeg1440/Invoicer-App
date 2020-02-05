@@ -22,16 +22,23 @@
 
 ## Description
 
-One Paragraph of project description goes here
-
+Ruby on Rails application using OO and MVC patterns that allows users to create/edit/view invoices and email them to clients with the ability for clients to accept or decline the invoice which updates the status in dashboard. Programmed with Github OAuth sign in functionality to allow users to sign in with their existing Github account.
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+ 1. Clone the repo with this command `git clone https://github.com/mikeg1440/Invoicer-App`
+ 2. Configure your PostgreSQL installation and set users credentials/permissions see [here for instruction](https://wiki.postgresql.org/wiki/First_steps)
+ 3. Run migrations (see installation section)
+ 4. Create a free [SendGrid account](https://signup.sendgrid.com/) and copy config details.
+ 5. Configure action mailer with [sendgrid access](https://sendgrid.com/docs/for-developers/sending-email/rubyonrails/) 
+ 6. Configure access to Github API if you want to use GitHub OmniAuth login  
+ 4. Run rails server `rails s`
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+ - Ruby on Rails 
+ - PostgreSQL 
+ - Credential management (I used DotENV gem for this)
 ```
 Give examples
 ```
@@ -52,52 +59,19 @@ Give examples
    -  if you want to test then seed the db `rails db:seed`
    - then to run tests do `rspec`
 
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
  
 ## Project Todo List
 
- - Fix dropdown menu for small screen (most likely a js script missing)
- - Fix delete row button for new invoice view (js agian)
- - Only allow users to create accounts
-
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+ - Add additional OmniAuth options
+ - Restrict access of client information for users (only users that created clients can view those clients)
+ - Fix formatting of email so that it looks just like the HTML rendering of invoice
 
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [OmniAuth Gem](https://github.com/omniauth/omniauth) - Authentication system
+* [Ruby on Rails](https://rubyonrails.org/) - Ruby framework
+* [DotENV](https://github.com/bkeepers/dotenv) - Used to manage environmental variables
 
 ## Contributing
 
