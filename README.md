@@ -36,7 +36,7 @@
   <h3 align="center">Invoicer App</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A simple invoice generator app that allows users to create accounts, clients and products/services and manage them from a single dashboard.  User's can sign in via Github using OmniAuth as well as the ability to send invoices from the dashboard if configured with a SendGrid API key.
     <br />
     <!-- <a href="https://github.com/mikeg1440/Invoicer-App"><strong>Explore the docs »</strong></a>
     <br /> -->
