@@ -9,6 +9,8 @@
 # Config our locale for Faker gem
 Faker::Config.locale = 'en-US'
 
+puts '[+] Starting to seed database'
+
 # create default admin user
 admin = User.create(username: 'admin', email: 'admin@mail.com', password: 'admin123', admin: true)
 
@@ -61,8 +63,9 @@ Invoice.all.each do |invoice|
     invoice_product = invoice.invoice_products.new
     invoice_product.product = Product.all.sample
     invoice_product.quantity = rand(10)
-    puts "Product Count: #{Product.all.count}"
     invoice_product.total = invoice_product.quantity * invoice_product.product.price
     invoice.save
   end
 end
+
+puts '[*] Finished seeding database!'
