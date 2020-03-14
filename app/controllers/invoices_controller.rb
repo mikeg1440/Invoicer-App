@@ -20,6 +20,9 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = current_user.invoices.build(invoice_params)
+    invoice_params[:invoice_products_attributes].each do |num,product|
+      @invoice.invoice_products.build(product)
+    end
     if @invoice.save
       @invoice.calculate_product_totals
       flash[:notice] = "Invoice created successfully!"
