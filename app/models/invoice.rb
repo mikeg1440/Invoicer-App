@@ -28,7 +28,9 @@ class Invoice < ApplicationRecord
 
   def calculate_product_totals
     self.invoice_products.each do |line|
-      line.total = line.product.price * line.quantity
+      if line
+        line.total = line.product.price * line.quantity
+      end 
     end
     self.save
   end
