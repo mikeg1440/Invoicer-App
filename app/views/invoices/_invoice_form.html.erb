@@ -166,12 +166,6 @@
       }
     }
 
-    function numberProducts(){
-      let selects = tBody.getElementsByTagName('select');
-      for (var i=0;i < selects.length; i++){
-        selects[i].parentElement.previousSibling.previousSibling.append(i+1);
-      }
-    }
 
     addBtn.addEventListener('click', function(){
       setTimeout(nameFields, 300);
@@ -179,6 +173,15 @@
 
     numberProducts();
   });
+
+  function numberProducts(){
+    debugger
+    let tBody = document.getElementById("table-body");
+    let selects = tBody.getElementsByTagName('tr');
+    for (var i=0;i < selects.length; i++){
+      selects[i].firstElementChild.innerText = i+1;
+    }
+  }
 
 
 </script>
