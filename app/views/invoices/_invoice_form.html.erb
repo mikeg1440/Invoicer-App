@@ -128,24 +128,20 @@
     return true;
   }
 
+  document.addEventListener('click', (e) => {
+    if (e.target.id == 'delete-row'){
+      e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement)
+      numberProducts()
+    }
+  })
+
   var deleteBtns = document.getElementsByClassName("remove-field");
 
   for (var i=0; i<deleteBtns.length; i++){
     deleteBtns[i].addEventListener('click', function(e){
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-      var elem = e.target;
-      var row = elem.parentNode.parentNode;
-      deleteRow(row);
+      e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement)
     });
   }
-  $(".remove-field").on('click', function(e){
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-    var elem = e.target;
-    var row = elem.parentNode.parentNode;
-    deleteRow(row);
-  });
 
   document.addEventListener("DOMContentLoaded", function(){
 
@@ -166,12 +162,6 @@
       }
     }
 
-    function numberProducts(){
-      let selects = tBody.getElementsByTagName('select');
-      for (var i=0;i < selects.length; i++){
-        selects[i].parentElement.previousSibling.previousSibling.append(i+1);
-      }
-    }
 
     addBtn.addEventListener('click', function(){
       setTimeout(nameFields, 300);
@@ -179,6 +169,15 @@
 
     numberProducts();
   });
+
+  function numberProducts(){
+    debugger
+    let tBody = document.getElementById("table-body");
+    let selects = tBody.getElementsByTagName('tr');
+    for (var i=0;i < selects.length; i++){
+      selects[i].firstElementChild.innerText = i+1;
+    }
+  }
 
 
 </script>

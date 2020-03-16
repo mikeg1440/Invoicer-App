@@ -24,7 +24,11 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
+![Ruby][ruby-shield]
+![Rails][rails-shield]
+![PostgreSQL][postgresql-shield]
+![HTML5][html5-shield]
+![Yarn][yarn-shield]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -36,7 +40,7 @@
   <h3 align="center">Invoicer App</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A simple invoice generator app that allows users to create accounts, clients and products/services and manage them from a single dashboard.  User's can sign in via Github using OmniAuth as well as the ability to send invoices from the dashboard if configured with a SendGrid API key.
     <br />
     <!-- <a href="https://github.com/mikeg1440/Invoicer-App"><strong>Explore the docs »</strong></a>
     <br /> -->
@@ -198,16 +202,23 @@ Project Link: [https://github.com/mikeg1440/Invoicer-App](https://github.com/mik
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/mikeg1440/Invoicer-App.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/mikeg1440/Invoicer-App.svg?style=plastic
 [contributors-url]: https://github.com/mikeg1440/Invoicer-App/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/mikeg1440/Invoicer-App.svg?style=flat-square
+[forks-shield]: https://img.shields.io/github/forks/mikeg1440/Invoicer-App.svg?style=plastic
 [forks-url]: https://github.com/mikeg1440/Invoicer-App/network/members
-[stars-shield]: https://img.shields.io/github/stars/mikeg1440/Invoicer-App.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/mikeg1440/Invoicer-App.svg?style=plastic
 [stars-url]: https://github.com/mikeg1440/Invoicer-App/stargazers
-[issues-shield]: https://img.shields.io/github/issues/mikeg1440/Invoicer-App.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/mikeg1440/Invoicer-App.svg?style=plastic
 [issues-url]: https://github.com/mikeg1440/Invoicer-App/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=plastic
 [license-url]: https://github.com/mikeg1440/Invoicer-App/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=plastic&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/michael-gaudreau
 [product-screenshot]: images/screenshot.png
+
+<!-- Built With Badges -->
+[ruby-shield]: https://img.shields.io/static/v1?label=Built%20With&message=Ruby&color=blue&logo=ruby
+[rails-shield]: https://img.shields.io/static/v1?label=Built%20With&message=Rails&color=blue&logo=rails
+[postgresql-shield]: https://img.shields.io/static/v1?label=Built%20With&message=PostgreSQL&color=blue&logo=postgresql
+[html5-shield]: https://img.shields.io/static/v1?label=Built%20With&message=HTML5&color=blue&logo=html5
+[yarn-shield]: https://img.shields.io/static/v1?label=Built%20With&message=Yarn&color=blue&logo=yarn

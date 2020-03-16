@@ -153,7 +153,6 @@
       function nameFields(){
         let selects = tBody.getElementsByTagName('select');
         for (var i=0;i < selects.length; i++){
-          // selects[i].name = "invoice[invoice_products_attributes][" +i+ "][product_id]";
           selects[i].name = `invoice[invoice_products_attributes][${i}][product_id]`;
           selects[i].id = `invoice[invoice_products_attributes][${i}][product_id]`;
           selects[i].parentElement.previousSibling.previousSibling.innerHTML = (i+1);
