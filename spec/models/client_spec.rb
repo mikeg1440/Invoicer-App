@@ -36,7 +36,6 @@ RSpec.describe Client, type: :model do
   end
 
   it 'is not valid without a name' do
-    # binding.pry
     expect(Client.new(email: 'steveyJ@apple.com', business_name: 'Apple Inc')).to_not be_valid
   end
 

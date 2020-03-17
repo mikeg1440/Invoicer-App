@@ -12,7 +12,6 @@ class Account < ApplicationRecord
 
   def self.find_or_build_by(params, user)
 
-    require 'pry-moves';#binding.pry
     account = self.find_by(user_id: user.id, client_id: params[:client_id])
     if account
       account
