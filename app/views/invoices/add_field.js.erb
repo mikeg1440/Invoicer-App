@@ -4,7 +4,6 @@ $("#table-body").append(`
     <th scope="row" id="product-num"></th>
     <td><%= select_tag :product_id, options_from_collection_for_select(Product.all, :id, :name), include_blank: 'Select a product'%></td>
     <td><input size="1em" class="form-control text-center" type="text" value="1" name="invoice[invoice_products_attributes][0][quantity]" id="invoice_invoice_products_attributes_0_quantity"></td>
-    <td><input readonly size="2em" class="form-control text-center" type="text" name="invoice[invoice_products_attributes][0][total]" id="invoice_invoice_products_attributes_0_total"></td>
     <td><a class="btn btn-danger float-right remove-field" id="delete-row">Delete</a></td>
   </tr>
 `)
