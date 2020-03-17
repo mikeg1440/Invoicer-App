@@ -1,17 +1,17 @@
 
 <div class="field">
   <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.text_field :name, class: 'form-control', placeholder: 'Product Name' %>
 </div>
 
 <div class="field">
   <%= f.label :description %>
-  <%= f.text_area :description, class: 'form-control' %>
+  <%= f.text_area :description, class: 'form-control', placeholder: 'Product Description' %>
 </div>
 
 <div class="field">
   <%= f.label :price %>
-  <%= f.text_field :price, class: 'form-control' %>
+  <%= f.number_field :price, class: 'form-control col-4', placeholder: '$' %>
 </div>
 
 
