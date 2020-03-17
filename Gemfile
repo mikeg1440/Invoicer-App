@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
-gem 'dotenv-rails', groups: [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.1'
 # Use postgresql as the database for Active Record
@@ -40,6 +39,8 @@ gem 'sendgrid-ruby'
 # gem 'image_processing', '~> 1.2'
 # assists creating nested forms
 # gem 'nested_form_fields'
+gem 'binding_of_caller', '~> 0.8.0'
+
 
 # gem for easy time differnce calculations
 gem 'time_difference'
@@ -55,6 +56,7 @@ group :development, :test do
   # pry-moves gem for debugging
   gem 'pry-moves'
   # for rails rspec testing
+  gem 'dotenv-rails'
 end
 
 group :development do
