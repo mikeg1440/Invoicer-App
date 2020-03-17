@@ -23,7 +23,9 @@ class InvoicesController < ApplicationController
     invoice_params[:invoice_products_attributes].each do |num,product|
       @invoice.invoice_products.build(product)
     end
-    if @invoice.save
+
+    if @invoice.valid?
+      @invoice.save
       @invoice.calculate_product_totals
       flash[:notice] = "Invoice created successfully!"
       redirect_to account_invoice_path(@invoice.account, @invoice)
