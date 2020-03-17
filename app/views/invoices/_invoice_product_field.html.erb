@@ -1,7 +1,7 @@
 
   <tr id="input-group">
 
-    <th scope="row" id="product-num"></th>
+    <th scope="row" id="product-num" class='text-center'></th>
 
     <td><%= select_tag :product_id, options_from_collection_for_select(Product.all, :id, :name), include_blank: 'Select a product'%></td>
 
