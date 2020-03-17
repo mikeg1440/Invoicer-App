@@ -8,7 +8,18 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'true' %>
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <style>
+
+    .github-fork-ribbon:before {
+      background-color: #00aa63;
+    }
+    .github-fork-ribbon:after {
+      text-shadow: -3px 0em 2px rgba(0,0,0,.5);
+    }
+    </style>
   </head>
 
   <header>
@@ -35,8 +46,8 @@
 
   </body>
 
-  <a target="_blank" href="https://github.com/mikeg1440/Invoicer-App"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
+  <a class="github-fork-ribbon right-bottom fixed orange" href="https://github.com/mikeg1440/Invoicer-App" alt="Form me on Github ribbon" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
   <footer>
     &nbsp;Copyright ©2020 Invocer App
   </footer>
