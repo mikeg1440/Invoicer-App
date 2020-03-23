@@ -86,15 +86,19 @@ RSpec.describe User, type: :model do
   end
 
   it 'has many invoices through accounts' do
-    account_1 = user.accounts.build(client: client_1)
-    account_2 = user.accounts.build(client: client_2)
+    account_1 = user.accounts.build(name: 'Test Account 1',client: client_1)
+    account_2 = user.accounts.build(name: 'Test Account 2',client: client_2)
+
+    user.save
 
     invoice_1 = account_1.invoices.build(account: account_1, status: 'draft', due_time: (DateTime.now + 7))
     invoice_2 = account_2.invoices.build(account: account_2, status: 'draft', due_time: (DateTime.now + 7))
 
-    user.save
-    expect(user.invoices.first).to eq(invoice_1)
-    expect(user.invoices.last).to eq(invoice_2)
+    account_1.save
+    account_2.save
+
+    expect(user.invoices).to include(invoice_1)
+    expect(user.invoices).to include(invoice_2)
   end
 
   it 'has many products through invoices' do
