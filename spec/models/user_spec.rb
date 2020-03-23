@@ -103,16 +103,22 @@ RSpec.describe User, type: :model do
 
   it 'has many products through invoices' do
     products = []
-    account_1 = user.accounts.build(client: client_1)
-    account_2 = user.accounts.build(client: client_2)
+    account_1 = user.accounts.build(name: 'Test Account 1',client: client_1)
+    account_2 = user.accounts.build(name: 'Test Account 2',client: client_2)
+
+    user.save
 
     invoice_1 = account_1.invoices.build(account: account_1, status: 'draft', due_time: (DateTime.now + 7))
     invoice_2 = account_2.invoices.build(account: account_2, status: 'draft', due_time: (DateTime.now + 7))
 
+    account_1.save
+    account_2.save
+
     # generate 5 products for each invoice
+    products = []
     5.times do
-      product_1 = invoice_1.products.build(name: Faker::Commerce.product_name, quantity: rand(10), price: Faker::Commerce.price)
-      product_2 = invoice_2.products.build(name: Faker::Commerce.product_name, quantity: rand(10), price: Faker::Commerce.price)
+      product_1 = invoice_1.products.build(user: user,name: Faker::Commerce.product_name, price: Faker::Commerce.price, description: 'Product for testing user model relations in test invoice 1')
+      product_2 = invoice_2.products.build(user: user,name: Faker::Commerce.product_name, price: Faker::Commerce.price, description: 'Product for testing user model relations in test invoice 2')
 
       products << product_1
       products << product_2
@@ -121,7 +127,8 @@ RSpec.describe User, type: :model do
       invoice_2.save
     end
 
-    expect(user.products).to eq(products)
+    expect(user.products).to include(products[0])
+    expect(user.products).to include(products[1])
   end
 
 end
