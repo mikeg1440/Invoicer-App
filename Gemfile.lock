@@ -173,7 +173,7 @@ GEM
       binding_of_caller (~> 0.7)
       pry (>= 0.10.4, < 1)
     public_suffix (4.0.3)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-proxy (0.6.5)
