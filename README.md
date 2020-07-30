@@ -117,7 +117,7 @@ npm install npm@latest -g
 
 Need to set up postgresql db first
  - `sudo su postgres`
- - `createuser --interactive --pwprompt` => to create a new user for postgresql 
+ - `createuser --interactive --pwprompt` => to create a new user for postgresql
  - add a `.env` file to root directory and set the db password like this
  ```
  DATABASE_USER=<DB_USER_HERE>
@@ -131,6 +131,16 @@ Now we need to create the db before we can run migrations
  - `rails db:migrate`
  -  if you want to test then seed the db `rails db:seed`
  - then to run tests do `rspec`
+
+##### OAuth Configuration
+
+If you want to enable users to sign in via GitHub using OAuth then you need to create a OAuth application in your GitHub developer settings.  Do this by logging into your GitHub account, navigate to setting>Developer settings>OAuth Apps>New OAuth app — [Github application page](https://github.com/settings/applications).
+
+We need the Client ID and and Client Secret that is provided to you after creating a new OAuth App on GitHub.  Take these two values and add them to your `.env` file like this.
+```
+GITHUB_APP_ID=<APP_ID>
+GITHUB_APP_SECRET=<APP_SECRET>
+```
 
 
 
